@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 p-8 min-h-screen">
+
+  <!-- Return Link -->
+  <div class="mb-6 max-w-xl mx-auto">
+    <a href="#" class="inline-block text-blue-600 hover:underline text-lg font-medium">
+      ← Return to Welcome Page
+    </a>
+  </div>
+
+  <!-- Settings Box -->
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded-xl p-6 space-y-6">
+    <h1 class="text-2xl font-bold mb-4 text-center">Settings</h1>
+
+    <!-- Font Size Setting -->
+    <div class="flex items-center justify-between">
+      <label for="fontToggle" class="text-lg font-medium">Large Font Size</label>
+      <input type="checkbox" id="fontToggle" class="w-5 h-5" />
+    </div>
+
+    <!-- High Contrast Setting -->
+    <div class="flex items-center justify-between">
+      <label for="contrastToggle" class="text-lg font-medium">High Contrast Mode</label>
+      <input type="checkbox" id="contrastToggle" class="w-5 h-5" />
+    </div>
+
+    <!-- Dark Mode Setting -->
+    <div class="flex items-center justify-between">
+      <label for="darkModeToggle" class="text-lg font-medium">Dark Mode</label>
+      <input type="checkbox" id="darkModeToggle" class="w-5 h-5" />
+    </div>
+
+    <!-- Reset Button -->
+    <div class="pt-4 border-t">
+      <button onclick="resetSettings()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full">
+        Reset All Settings
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const fontToggle = document.getElementById('fontToggle');
+    const contrastToggle = document.getElementById('contrastToggle');
+    const darkModeToggle = document.get

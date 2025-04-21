@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white shadow-lg rounded-xl w-full max-w-3xl p-10 flex flex-col md:flex-row items-stretch">
+    
+    <!-- Login Side -->
+    <div class="md:w-1/2 pr-0 md:pr-6 border-b md:border-b-0 md:border-r border-gray-300 mb-8 md:mb-0">
+      <h2 class="text-2xl font-bold mb-4">Welcome Back</h2>
+      <p class="text-gray-600 mb-6">Log in to access your favourite games and settings.</p>
+      <form id="loginForm" class="space-y-4">
+        <input type="text" id="loginName" placeholder="Enter your name" class="w-full p-3 border rounded" required>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full">Login</button>
+      </form>
+    </div>
+
+    <!-- Signup Side -->
+    <div class="md:w-1/2 pl-0 md:pl-6">
+      <h2 class="text-2xl font-bold mb-4">New here?</h2>
+      <p class="text-gray-600 mb-6">Sign up to save your favourites and customize your game experience!</p>
+      <form id="signupForm" class="space-y-4">
+        <input type="text" id="signupName" placeholder="Choose a username" class="w-full p-3 border rounded" required>
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full">Sign Up</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    // Login logic
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const loginName = document.getElementById('loginName').value;
+      const savedUser = localStorage.getItem('username');
+      if (loginName === savedUser) {
+        alert(`Welcome back, ${loginName}!`);
+        window.location.href = 'index.html';
+      } else {
+        alert("User not found. Please sign up first.");
+      }
+    });
+
+    // Sign up logic
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const signupName = document.getElementById('signupName').value;
+      localStorage.setItem('username', signupName);
+      alert(`Account created for ${signupName}!`);
+      window.location.href = 'index.html';
+    });
+  </script>
+
+</body>
+</html>
