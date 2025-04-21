@@ -9,7 +9,7 @@
 
   <!-- Return Link -->
   <div class="mb-6 max-w-xl mx-auto">
-    <a href="https://turakiannan.github.io/PuzzleGames/" class="inline-block text-blue-600 hover:underline text-lg font-medium">
+    <a href="index.html" class="inline-block text-blue-600 hover:underline text-lg font-medium">
       ← Return to Welcome Page
     </a>
   </div>
@@ -36,8 +36,15 @@
       <input type="checkbox" id="darkModeToggle" class="w-5 h-5" />
     </div>
 
-    <!-- Reset Button -->
+    <!-- Save Button -->
     <div class="pt-4 border-t">
+      <button onclick="saveSettings()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full">
+        Save Settings
+      </button>
+    </div>
+
+    <!-- Reset Button -->
+    <div>
       <button onclick="resetSettings()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full">
         Reset All Settings
       </button>
@@ -47,4 +54,34 @@
   <script>
     const fontToggle = document.getElementById('fontToggle');
     const contrastToggle = document.getElementById('contrastToggle');
-    const darkModeToggle = document.get
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Load saved settings on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('fontSize') === 'large') fontToggle.checked = true;
+      if (localStorage.getItem('contrast') === 'high') contrastToggle.checked = true;
+      if (localStorage.getItem('darkMode') === 'on') darkModeToggle.checked = true;
+    });
+
+    // Save button logic
+    function saveSettings() {
+      localStorage.setItem('fontSize', fontToggle.checked ? 'large' : 'normal');
+      localStorage.setItem('contrast', contrastToggle.checked ? 'high' : 'normal');
+      localStorage.setItem('darkMode', darkModeToggle.checked ? 'on' : 'off');
+      alert('✅ Settings saved! Return to the welcome page to see changes.');
+    }
+
+    // Reset settings
+    function resetSettings() {
+      localStorage.removeItem('fontSize');
+      localStorage.removeItem('contrast');
+      localStorage.removeItem('darkMode');
+      fontToggle.checked = false;
+      contrastToggle.checked = false;
+      darkModeToggle.checked = false;
+      alert('🔁 Settings reset!');
+    }
+  </script>
+
+</body>
+</html>
