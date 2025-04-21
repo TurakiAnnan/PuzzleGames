@@ -23,14 +23,14 @@
 
     <div class="grid grid-cols-3 items-center px-12 py-6">
       <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
-      <div class="flex justify-center gap-x-4 items-center">
-        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
+      <div class="flex justify-center gap-x-10 items-center">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center mr-4">
           <span class="inline-block w-5 h-5 mr-2">⭐</span>
           Favourites
         </button>
-        <div class="flex gap-2 items-center">
-          <input id="searchInput" type="text" placeholder="Search games..." class="border border-gray-300 rounded px-3 py-2 text-sm">
-          <button onclick="handleSearch()" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
+        <div class="flex rounded bg-gray-200 overflow-hidden">
+          <input id="searchInput" type="text" placeholder="Search games..." class="px-3 py-2 text-sm bg-gray-200 outline-none">
+          <button onclick="handleSearch()" class="px-4 py-2 text-black font-semibold text-lg hover:bg-gray-300 flex items-center">
             <span class="inline-block w-5 h-5 mr-2">🔍</span>
             Search
           </button>
