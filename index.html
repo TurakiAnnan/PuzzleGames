@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Apply saved settings -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const font = localStorage.getItem('fontSize');
@@ -14,10 +12,12 @@
       const dark = localStorage.getItem('darkMode');
 
       const body = document.getElementById('pageBody');
+      body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl');
 
-      if (font === 'large') {
-        body.classList.add('text-xl');
-      }
+      if (font === 'small') body.classList.add('text-sm');
+      else if (font === 'medium') body.classList.add('text-base');
+      else if (font === 'large') body.classList.add('text-lg');
+      else if (font === 'xlarge') body.classList.add('text-xl');
 
       if (contrast === 'high') {
         body.classList.remove('text-gray-900');
@@ -31,7 +31,7 @@
     });
   </script>
 </head>
-<body id="pageBody" class="bg-white text-gray-900">
+<body id="pageBody" class="bg-white text-gray-900 text-base">
 
   <!-- Settings + Login -->
   <header class="bg-blue-100 border-b border-black relative">
