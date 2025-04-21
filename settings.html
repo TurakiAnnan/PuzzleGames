@@ -5,7 +5,7 @@
   <title>Settings</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900 p-8 min-h-screen">
+<body id="settingsBody" class="bg-gray-100 text-gray-900 p-8 min-h-screen transition-all">
 
   <!-- Return Link -->
   <div class="mb-6 max-w-xl mx-auto">
@@ -55,23 +55,54 @@
     const fontToggle = document.getElementById('fontToggle');
     const contrastToggle = document.getElementById('contrastToggle');
     const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.getElementById('settingsBody');
 
-    // Load saved settings on page load
+    // Apply from localStorage on page load
     window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('fontSize') === 'large') fontToggle.checked = true;
-      if (localStorage.getItem('contrast') === 'high') contrastToggle.checked = true;
-      if (localStorage.getItem('darkMode') === 'on') darkModeToggle.checked = true;
+      const font = localStorage.getItem('fontSize');
+      const contrast = localStorage.getItem('contrast');
+      const dark = localStorage.getItem('darkMode');
+
+      fontToggle.checked = font === 'large';
+      contrastToggle.checked = contrast === 'high';
+      darkModeToggle.checked = dark === 'on';
+
+      applyPreview(); // apply immediately
     });
 
-    // Save button logic
+    function applyPreview() {
+      body.classList.remove('text-xl', 'text-base', 'text-gray-900', 'text-black', 'bg-white', 'bg-gray-100', 'bg-gray-900', 'text-white');
+
+      // Font size
+      body.classList.add(fontToggle.checked ? 'text-xl' : 'text-base');
+
+      // Contrast
+      if (contrastToggle.checked) {
+        body.classList.add('text-black');
+      } else {
+        body.classList.add('text-gray-900');
+      }
+
+      // Dark mode
+      if (darkModeToggle.checked) {
+        body.classList.add('bg-gray-900', 'text-white');
+      } else {
+        body.classList.add('bg-gray-100');
+      }
+    }
+
+    // Watch for live changes
+    fontToggle.addEventListener('change', applyPreview);
+    contrastToggle.addEventListener('change', applyPreview);
+    darkModeToggle.addEventListener('change', applyPreview);
+
     function saveSettings() {
       localStorage.setItem('fontSize', fontToggle.checked ? 'large' : 'normal');
       localStorage.setItem('contrast', contrastToggle.checked ? 'high' : 'normal');
       localStorage.setItem('darkMode', darkModeToggle.checked ? 'on' : 'off');
-      alert('✅ Settings saved! Return to the welcome page to see changes.');
+      alert('✅ Settings saved! Return to the welcome page to see them there too.');
     }
 
-    // Reset settings
     function resetSettings() {
       localStorage.removeItem('fontSize');
       localStorage.removeItem('contrast');
@@ -79,9 +110,9 @@
       fontToggle.checked = false;
       contrastToggle.checked = false;
       darkModeToggle.checked = false;
-      alert('🔁 Settings reset!');
+      applyPreview();
+      alert('🔁 Settings reset.');
     }
   </script>
-
 </body>
 </html>
