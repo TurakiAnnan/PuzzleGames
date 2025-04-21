@@ -8,37 +8,36 @@
 </head>
 <body class="bg-white text-gray-900">
 
-  <!-- Settings Element -->
+  <!-- Settings + Login -->
   <header class="bg-blue-100 border-b border-black relative">
-    <div class="absolute top-4 right-4">
+    <div class="absolute top-4 right-4 flex space-x-4">
       <a href="settings.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
         <span class="inline-block w-5 h-5 mr-2">⚙️</span>
         Settings
       </a>
+      <a href="login.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
+        <span class="inline-block w-5 h-5 mr-2">👤</span>
+        Login
+      </a>
     </div>
 
-     <!-- Favourite Element -->
     <div class="grid grid-cols-3 items-center px-12 py-6">
       <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
       <div class="flex justify-center gap-x-10">
-        <button class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-5 rounded flex items-center">
+        <button onclick="handleFavourites()" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-5 rounded flex items-center">
           <span class="inline-block w-5 h-5 mr-2">⭐</span>
           Favourites
         </button>
-
-         <!-- Search Element -->
         <button class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-5 rounded flex items-center">
           <span class="inline-block w-5 h-5 mr-2">🔍</span>
           Search
         </button>
-        
       </div>
       <div></div>
     </div>
 
     <hr class="border-t border-black" />
 
-    <!-- Categories Element -->
     <nav class="bg-black text-white">
       <ul class="flex space-x-6 px-6 py-2 text-lg justify-center">
         <li><a href="#" class="hover:underline">Home</a></li>
@@ -54,31 +53,113 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+
       <!-- Game 1 -->
       <div>
-        <div class="text-lg font-semibold mb-2">Rock, Paper, Scissors</div>
+        <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
+          Rock, Paper, Scissors
+          <span class="cursor-pointer select-none" data-game="Rock, Paper, Scissors">☆</span>
+        </div>
         <a href="#" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition"></a>
       </div>
 
       <!-- Game 2 -->
       <div>
-        <div class="text-lg font-semibold mb-2">Crosswords</div>
+        <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
+          Crosswords
+          <span class="cursor-pointer select-none" data-game="Crosswords">☆</span>
+        </div>
         <a href="#" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition"></a>
       </div>
 
       <!-- Game 3 -->
       <div>
-        <div class="text-lg font-semibold mb-2">Riddles</div>
+        <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
+          Riddles
+          <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
+        </div>
         <a href="#" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition"></a>
       </div>
 
       <!-- Game 4 -->
       <div>
-        <div class="text-lg font-semibold mb-2">Hangman</div>
+        <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
+          Hangman
+          <span class="cursor-pointer select-none" data-game="Hangman">☆</span>
+        </div>
         <a href="#" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition"></a>
       </div>
+
     </div>
   </main>
+
+  <script>
+    const user = localStorage.getItem('username');
+    if (!user) {
+      window.location.href = 'login.html';
+    } else {
+      document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
+    }
+
+    const font = localStorage.getItem('fontSize');
+    const contrast = localStorage.getItem('contrast');
+    const dark = localStorage.getItem('darkMode');
+
+    if (font === 'large') document.body.classList.add('text-xl');
+    if (contrast === 'high') {
+      document.body.classList.remove('bg-white', 'text-gray-900');
+      document.body.classList.add('bg-white', 'text-black');
+    }
+    if (dark === 'on') {
+      document.body.classList.remove('bg-white', 'text-gray-900');
+      document.body.classList.add('bg-gray-900', 'text-white');
+    }
+
+    const favouriteStars = document.querySelectorAll('[data-game]');
+
+    // Load current favourites for the logged-in user
+    let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
+
+    function saveFavourites() {
+      localStorage.setItem(`${user}_favourites`, JSON.stringify(favourites));
+    }
+
+    function toggleFavourite(game, element) {
+      const index = favourites.indexOf(game);
+      if (index === -1) {
+        favourites.push(game);
+        element.textContent = "⭐";
+      } else {
+        favourites.splice(index, 1);
+        element.textContent = "☆";
+      }
+      saveFavourites();
+    }
+
+    // Apply current state + set up click events
+    favouriteStars.forEach(star => {
+      const game = star.getAttribute('data-game');
+      if (favourites.includes(game)) {
+        star.textContent = "⭐";
+      }
+
+      star.addEventListener('click', () => {
+        toggleFavourite(game, star);
+      });
+    });
+
+    function handleFavourites() {
+      if (!user) {
+        alert("Please log in to view favourites.");
+        return;
+      }
+      if (favourites.length === 0) {
+        alert("You haven't added any favourites yet!");
+        return;
+      }
+      alert("Your favourites:\n" + favourites.join("\n"));
+    }
+  </script>
 
 </body>
 </html>
