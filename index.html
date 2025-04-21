@@ -5,6 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Apply saved settings -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const font = localStorage.getItem('fontSize');
+      const contrast = localStorage.getItem('contrast');
+      const dark = localStorage.getItem('darkMode');
+
+      if (font === 'large') document.body.classList.add('text-xl');
+      if (contrast === 'high') {
+        document.body.classList.remove('bg-white', 'text-gray-900');
+        document.body.classList.add('bg-white', 'text-black');
+      }
+      if (dark === 'on') {
+        document.body.classList.remove('bg-white', 'text-gray-900');
+        document.body.classList.add('bg-gray-900', 'text-white');
+      }
+    });
+  </script>
 </head>
 <body class="bg-white text-gray-900">
 
