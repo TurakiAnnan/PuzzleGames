@@ -24,7 +24,7 @@
     <div class="grid grid-cols-3 items-center px-12 py-6">
       <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
       <div class="flex justify-center gap-x-10">
-        <button onclick="handleFavourites()" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-5 rounded flex items-center">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-5 rounded flex items-center">
           <span class="inline-block w-5 h-5 mr-2">⭐</span>
           Favourites
         </button>
@@ -55,7 +55,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
 
       <!-- Game 1 -->
-      <div>
+      <div data-game-box="Rock, Paper, Scissors">
         <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
           Rock, Paper, Scissors
           <span class="cursor-pointer select-none" data-game="Rock, Paper, Scissors">☆</span>
@@ -64,7 +64,7 @@
       </div>
 
       <!-- Game 2 -->
-      <div>
+      <div data-game-box="Crosswords">
         <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
           Crosswords
           <span class="cursor-pointer select-none" data-game="Crosswords">☆</span>
@@ -73,7 +73,7 @@
       </div>
 
       <!-- Game 3 -->
-      <div>
+      <div data-game-box="Riddles">
         <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
           Riddles
           <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
@@ -82,7 +82,7 @@
       </div>
 
       <!-- Game 4 -->
-      <div>
+      <div data-game-box="Hangman">
         <div class="text-lg font-semibold mb-2 flex justify-center items-center gap-2">
           Hangman
           <span class="cursor-pointer select-none" data-game="Hangman">☆</span>
@@ -101,6 +101,7 @@
       document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
     }
 
+    // Load and apply saved settings
     const font = localStorage.getItem('fontSize');
     const contrast = localStorage.getItem('contrast');
     const dark = localStorage.getItem('darkMode');
@@ -115,50 +116,60 @@
       document.body.classList.add('bg-gray-900', 'text-white');
     }
 
-    const favouriteStars = document.querySelectorAll('[data-game]');
-
-    // Load current favourites for the logged-in user
     let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
+    let showingFavouritesOnly = false;
+
+    const stars = document.querySelectorAll('[data-game]');
+    const gameBoxes = document.querySelectorAll('[data-game-box]');
 
     function saveFavourites() {
       localStorage.setItem(`${user}_favourites`, JSON.stringify(favourites));
     }
 
-    function toggleFavourite(game, element) {
-      const index = favourites.indexOf(game);
-      if (index === -1) {
+    function toggleFavourite(game, el) {
+      const i = favourites.indexOf(game);
+      if (i === -1) {
         favourites.push(game);
-        element.textContent = "⭐";
+        el.textContent = '⭐';
       } else {
-        favourites.splice(index, 1);
-        element.textContent = "☆";
+        favourites.splice(i, 1);
+        el.textContent = '☆';
       }
       saveFavourites();
+      if (showingFavouritesOnly) filterToFavourites();
     }
 
-    // Apply current state + set up click events
-    favouriteStars.forEach(star => {
+    function filterToFavourites() {
+      gameBoxes.forEach(box => {
+        const gameName = box.getAttribute('data-game-box');
+        box.style.display = favourites.includes(gameName) ? 'block' : 'none';
+      });
+    }
+
+    function showAllGames() {
+      gameBoxes.forEach(box => box.style.display = 'block');
+    }
+
+    function handleFavouritesToggle() {
+      showingFavouritesOnly = !showingFavouritesOnly;
+      if (showingFavouritesOnly) {
+        filterToFavourites();
+        document.getElementById("favouriteToggle").classList.add("bg-yellow-200");
+      } else {
+        showAllGames();
+        document.getElementById("favouriteToggle").classList.remove("bg-yellow-200");
+      }
+    }
+
+    stars.forEach(star => {
       const game = star.getAttribute('data-game');
       if (favourites.includes(game)) {
         star.textContent = "⭐";
       }
-
       star.addEventListener('click', () => {
         toggleFavourite(game, star);
       });
     });
-
-    function handleFavourites() {
-      if (!user) {
-        alert("Please log in to view favourites.");
-        return;
-      }
-      if (favourites.length === 0) {
-        alert("You haven't added any favourites yet!");
-        return;
-      }
-      alert("Your favourites:\n" + favourites.join("\n"));
-    }
   </script>
 
 </body>
