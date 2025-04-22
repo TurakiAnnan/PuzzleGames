@@ -19,9 +19,14 @@
     <h1 class="text-2xl font-bold mb-4 text-center">Settings</h1>
 
     <!-- Font Size Setting -->
-    <div class="flex items-center justify-between">
-      <label for="fontToggle" class="text-lg font-medium">Large Font Size</label>
-      <input type="checkbox" id="fontToggle" class="w-5 h-5" />
+    <div>
+      <label for="fontSize" class="block text-lg font-medium mb-2">Font Size</label>
+      <select id="fontSize" class="w-full border border-gray-300 rounded px-3 py-2">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+        <option value="xlarge">Extra Large</option>
+      </select>
     </div>
 
     <!-- High Contrast Setting -->
@@ -52,38 +57,43 @@
   </div>
 
   <script>
-    const fontToggle = document.getElementById('fontToggle');
+    const fontSizeSelect = document.getElementById('fontSize');
     const contrastToggle = document.getElementById('contrastToggle');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.getElementById('settingsBody');
 
-    // Apply from localStorage on page load
+    // Load saved settings
     window.addEventListener('DOMContentLoaded', () => {
-      const font = localStorage.getItem('fontSize');
-      const contrast = localStorage.getItem('contrast');
-      const dark = localStorage.getItem('darkMode');
-
-      fontToggle.checked = font === 'large';
-      contrastToggle.checked = contrast === 'high';
-      darkModeToggle.checked = dark === 'on';
-
-      applyPreview(); // apply immediately
+      fontSizeSelect.value = localStorage.getItem('fontSize') || 'large';
+      contrastToggle.checked = localStorage.getItem('contrast') === 'high';
+      darkModeToggle.checked = localStorage.getItem('darkMode') === 'on';
+      applyPreview();
     });
 
+    // Live preview
+    fontSizeSelect.addEventListener('change', applyPreview);
+    contrastToggle.addEventListener('change', applyPreview);
+    darkModeToggle.addEventListener('change', applyPreview);
+
     function applyPreview() {
-      body.classList.remove('text-xl', 'text-base', 'text-gray-900', 'text-black', 'bg-white', 'bg-gray-100', 'bg-gray-900', 'text-white');
+      body.classList.remove(
+        'text-sm', 'text-base', 'text-lg', 'text-xl',
+        'text-gray-900', 'text-black',
+        'bg-white', 'bg-gray-100', 'bg-gray-900', 'text-white'
+      );
 
-      // Font size
-      body.classList.add(fontToggle.checked ? 'text-xl' : 'text-base');
+      const font = fontSizeSelect.value;
+      if (font === 'small') body.classList.add('text-sm');
+      else if (font === 'medium') body.classList.add('text-base');
+      else if (font === 'large') body.classList.add('text-lg');
+      else if (font === 'xlarge') body.classList.add('text-xl');
 
-      // Contrast
       if (contrastToggle.checked) {
         body.classList.add('text-black');
       } else {
         body.classList.add('text-gray-900');
       }
 
-      // Dark mode
       if (darkModeToggle.checked) {
         body.classList.add('bg-gray-900', 'text-white');
       } else {
@@ -91,13 +101,8 @@
       }
     }
 
-    // Watch for live changes
-    fontToggle.addEventListener('change', applyPreview);
-    contrastToggle.addEventListener('change', applyPreview);
-    darkModeToggle.addEventListener('change', applyPreview);
-
     function saveSettings() {
-      localStorage.setItem('fontSize', fontToggle.checked ? 'large' : 'normal');
+      localStorage.setItem('fontSize', fontSizeSelect.value);
       localStorage.setItem('contrast', contrastToggle.checked ? 'high' : 'normal');
       localStorage.setItem('darkMode', darkModeToggle.checked ? 'on' : 'off');
       alert('✅ Settings saved! Return to the welcome page to see them there too.');
@@ -107,12 +112,13 @@
       localStorage.removeItem('fontSize');
       localStorage.removeItem('contrast');
       localStorage.removeItem('darkMode');
-      fontToggle.checked = false;
+      fontSizeSelect.value = 'large';
       contrastToggle.checked = false;
       darkModeToggle.checked = false;
       applyPreview();
       alert('🔁 Settings reset.');
     }
   </script>
+
 </body>
 </html>
