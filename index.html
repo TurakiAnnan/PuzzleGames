@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CODE FOR ALLOW SETTING TO BE APPLIED INSTANTLY WHEN OPENING NEW -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const font = localStorage.getItem('fontSize');
@@ -40,9 +42,13 @@
     });
   </script>
 </head>
-<body id="pageBody" class="bg-white text-gray-900 text-base">
+  
 
-  <!-- Settings + Login -->
+ <!-- Using body ID for Setting--> 
+<body id="pageBody" class="bg-white text-gray-900 text-base">
+  
+
+  <!-- Settings + Login  BUTTONS-->
   <header class="bg-blue-100 border-b border-black relative">
     <div class="absolute top-4 right-4 flex space-x-4">
       <a href="settings.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
@@ -55,6 +61,8 @@
       </a>
     </div>
 
+
+    <!-- Favourites and Searching Button -->
     <div class="grid grid-cols-3 items-center px-12 py-6">
       <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
       <div class="flex justify-center gap-x-10 items-center">
@@ -73,8 +81,9 @@
       <div></div>
     </div>
 
-    <hr class="border-t border-black" />
 
+    <!-- Navigation Bar Start -->
+    <hr class="border-t border-black" />
     <nav class="bg-black text-white">
       <ul class="flex space-x-6 px-6 py-2 text-lg justify-center">
         <li><a href="#" class="hover:underline">Home</a></li>
@@ -89,6 +98,8 @@
       <h2 class="text-inherit font-bold mb-4">Click to play a game!</h2>
     </div>
 
+    
+    <!-- CREATING GAME BOXES-->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
       <div data-game-box="Rock, Paper, Scissors">
         <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
@@ -124,6 +135,8 @@
     </div>
   </main>
 
+
+  <!-- Background Logic REDIRECTING TO LOGIN, SEARCHING AND FAVOURITE -->
   <script>
     const user = localStorage.getItem('username');
     if (!user) {
