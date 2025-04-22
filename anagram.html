@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<style>
-div1 {
-top-padding-100px
-text-align: center;
-}
-</style>
+
 
 <html lang="en">
 <head>
@@ -102,26 +97,27 @@ text-align: center;
 
   
 <body>
-<div class ="div1">
+  
 
   <h1> anagram</h1>
 
   
   
-  <div class="anagram-box">
-    <label for="difficulty">Difficulty:</label>
-    <select id="difficulty" onchange="newPuzzle()">
-      <option value="easy">Easy</option>
-      <option value="medium" selected>Medium</option>
-      <option value="hard">Hard</option>
-    </select>
+ <div class="anagram-box p-[100px] text-center">
+  <label for="difficulty">Difficulty:</label>
+  <select id="difficulty" onchange="newPuzzle()">
+    <option value="easy">Easy</option>
+    <option value="medium" selected>Medium</option>
+    <option value="hard">Hard</option>
+  </select>
 
-    <div class="scrambled" id="scrambled-word">Loading...</div>
-    <input type="text" id="user-guess" placeholder="Your guess here..." />
-    <button onclick="checkAnswer()">Submit</button>
-    <button onclick="newPuzzle()">Skip</button>
-    <div class="message" id="feedback"></div>
-  </div>
+  <div class="scrambled" id="scrambled-word">Loading...</div>
+  <input type="text" id="user-guess" placeholder="Your guess here..." />
+  <button onclick="checkAnswer()">Submit</button>
+  <button onclick="newPuzzle()">Skip</button>
+  <div class="message" id="feedback"></div>
+</div>
+
 
   <script>
     const wordList = {
@@ -167,7 +163,7 @@ text-align: center;
     }
 
     window.onload = newPuzzle;
-  </div>
+  
   </script>
 
 </body>
