@@ -20,8 +20,17 @@
       else if (font === 'xlarge') body.classList.add('text-xl');
 
       if (contrast === 'high') {
-        body.classList.remove('text-gray-900');
-        body.classList.add('text-black');
+        body.classList.remove('bg-white', 'bg-gray-100');
+        body.classList.add('bg-yellow-50', 'text-black');
+
+        // Apply to specific sections
+        const buttons = document.querySelectorAll('button, a');
+        buttons.forEach(btn => {
+          btn.classList.add('border', 'border-black');
+        });
+
+        const nav = document.querySelector('nav');
+        if (nav) nav.classList.replace('bg-black', 'bg-yellow-600');
       }
 
       if (dark === 'on') {
