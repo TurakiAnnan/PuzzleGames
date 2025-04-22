@@ -9,7 +9,7 @@
 
   <div class="bg-white shadow-lg rounded-xl w-full max-w-3xl p-10 flex flex-col md:flex-row items-stretch">
     
-    <!-- Login Side -->
+    <!-- LOGIN ELEMENT -->
     <div class="md:w-1/2 pr-0 md:pr-6 border-b md:border-b-0 md:border-r border-gray-300 mb-8 md:mb-0">
       <h2 class="text-2xl font-bold mb-4">Welcome Back</h2>
       <p class="text-gray-600 mb-6">Log in to access your favourite games and settings.</p>
@@ -19,7 +19,7 @@
       </form>
     </div>
 
-    <!-- Signup Side -->
+    <!-- SIGNUP ELEMENT -->
     <div class="md:w-1/2 pl-0 md:pl-6">
       <h2 class="text-2xl font-bold mb-4">New here?</h2>
       <p class="text-gray-600 mb-6">Sign up to save your favourites and customize your game experience!</p>
@@ -32,6 +32,7 @@
   </div>
 
   <script>
+    
     // Login logic
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -50,6 +51,35 @@
       e.preventDefault();
       const signupName = document.getElementById('signupName').value;
       localStorage.setItem('username', signupName);
+
+      // How To Call On Progress Key So It Can be Updated
+      /* const username = localStorage.getItem('username');     //THIS FINDS THE USERS USERNAME
+          const progressKey = `${username}_progress`;            //THIS FINDS USER PROGRESS FEILD
+          const progress = JSON.parse(localStorage.getItem(progressKey));     //THIS ALLOWS YOU TO LOOK INTO PROGRESSKEY FEILD 
+          progress.riddles.level1 = true;      // THIS IS HOW TO SET THE FLAG */
+
+      const progressKey = `${signupName}_progress`;
+      const defaultProgress = {
+        riddles: {
+          level1: false,
+          level2: false
+        },
+        hangman: {
+          level1: false,
+          level2: false
+        },
+        crosswords: {
+          level1: false,
+          level2: false
+        },
+        rockpaperscissors: {
+          level1: false,
+          level2: false
+        }
+      };
+      localStorage.setItem(progressKey, JSON.stringify(defaultProgress));
+
+      //Create Popup
       alert(`Account created for ${signupName}!`);
       window.location.href = 'index.html';
     });
