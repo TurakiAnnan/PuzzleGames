@@ -42,6 +42,7 @@
 </head>
 <body id="pageBody" class="bg-white text-gray-900 text-base">
   <audio id="popSound" src="popEffect.mp3" preload="auto"></audio>
+
   <main class="p-6">
     <div class="mb-8 text-center">
       <h2 class="text-inherit font-bold mb-4">Click to play a game!</h2>
@@ -91,92 +92,94 @@
   </main>
 
   <script>
-    const user = localStorage.getItem('username');
-    if (!user) {
-      window.location.href = 'login.html';
-    } else {
-      document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
-    }
-
-    let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
-    let showingFavouritesOnly = false;
-
-    const stars = document.querySelectorAll('[data-game]');
-    const gameBoxes = document.querySelectorAll('[data-game-box]');
-
-    function saveFavourites() {
-      localStorage.setItem(`${user}_favourites`, JSON.stringify(favourites));
-    }
-
-    function playPopSound() {
-      const popSound = document.getElementById('popSound');
-      if (popSound) {
-        popSound.currentTime = 0;
-        popSound.play();
-      }
-    }
-
-    function toggleFavourite(game, el) {
-      const i = favourites.indexOf(game);
-      if (i === -1) {
-        favourites.push(game);
-        el.textContent = '⭐';
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = localStorage.getItem('username');
+      if (!user) {
+        window.location.href = 'login.html';
       } else {
-        favourites.splice(i, 1);
-        el.textContent = '☆';
+        document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
       }
-      playPopSound();
-      saveFavourites();
-      if (showingFavouritesOnly) filterToFavourites();
-    }
 
-    function filterToFavourites() {
-      gameBoxes.forEach(box => {
-        const gameName = box.getAttribute('data-game-box');
-        box.style.display = favourites.includes(gameName) ? 'block' : 'none';
-      });
-    }
+      let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
+      let showingFavouritesOnly = false;
 
-    function showAllGames() {
-      gameBoxes.forEach(box => box.style.display = 'block');
-    }
+      const stars = document.querySelectorAll('[data-game]');
+      const gameBoxes = document.querySelectorAll('[data-game-box]');
 
-    function handleFavouritesToggle() {
-      showingFavouritesOnly = !showingFavouritesOnly;
-      if (showingFavouritesOnly) {
-        filterToFavourites();
-        document.getElementById("favouriteToggle").classList.add("bg-yellow-200");
-      } else {
-        showAllGames();
-        document.getElementById("favouriteToggle").classList.remove("bg-yellow-200");
+      function saveFavourites() {
+        localStorage.setItem(`${user}_favourites`, JSON.stringify(favourites));
       }
-    }
 
-    function handleSearch() {
-      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-      gameBoxes.forEach(box => {
-        const title = box.querySelector("div").innerText.toLowerCase();
-        box.style.display = title.includes(searchTerm) ? "block" : "none";
-      });
-    }
-
-    document.getElementById("searchInput").addEventListener("input", e => {
-      if (e.target.value === "") {
-        if (showingFavouritesOnly) {
-          filterToFavourites();
-        } else {
-          showAllGames();
+      function playPopSound() {
+        const popSound = document.getElementById('popSound');
+        if (popSound) {
+          popSound.currentTime = 0;
+          popSound.play();
         }
       }
-    });
 
-    stars.forEach(star => {
-      const game = star.getAttribute('data-game');
-      if (favourites.includes(game)) {
-        star.textContent = "⭐";
+      function toggleFavourite(game, el) {
+        const i = favourites.indexOf(game);
+        if (i === -1) {
+          favourites.push(game);
+          el.textContent = '⭐';
+        } else {
+          favourites.splice(i, 1);
+          el.textContent = '☆';
+        }
+        playPopSound();
+        saveFavourites();
+        if (showingFavouritesOnly) filterToFavourites();
       }
-      star.addEventListener('click', () => {
-        toggleFavourite(game, star);
+
+      function filterToFavourites() {
+        gameBoxes.forEach(box => {
+          const gameName = box.getAttribute('data-game-box');
+          box.style.display = favourites.includes(gameName) ? 'block' : 'none';
+        });
+      }
+
+      function showAllGames() {
+        gameBoxes.forEach(box => box.style.display = 'block');
+      }
+
+      window.handleFavouritesToggle = function() {
+        showingFavouritesOnly = !showingFavouritesOnly;
+        if (showingFavouritesOnly) {
+          filterToFavourites();
+          document.getElementById("favouriteToggle").classList.add("bg-yellow-200");
+        } else {
+          showAllGames();
+          document.getElementById("favouriteToggle").classList.remove("bg-yellow-200");
+        }
+      }
+
+      window.handleSearch = function() {
+        const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        gameBoxes.forEach(box => {
+          const title = box.querySelector("div").innerText.toLowerCase();
+          box.style.display = title.includes(searchTerm) ? "block" : "none";
+        });
+      }
+
+      document.getElementById("searchInput").addEventListener("input", e => {
+        if (e.target.value === "") {
+          if (showingFavouritesOnly) {
+            filterToFavourites();
+          } else {
+            showAllGames();
+          }
+        }
+      });
+
+      stars.forEach(star => {
+        const game = star.getAttribute('data-game');
+        if (favourites.includes(game)) {
+          star.textContent = "⭐";
+        }
+        star.addEventListener('click', () => {
+          toggleFavourite(game, star);
+        });
       });
     });
   </script>
