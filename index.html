@@ -148,17 +148,18 @@
       const context = new AudioContext();
       const oscillator = context.createOscillator();
       const gainNode = context.createGain();
-
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(500, context.currentTime);
-      gainNode.gain.setValueAtTime(0.05, context.currentTime);
-
+    
+      oscillator.type = 'sine'; // Smooth tone
+      oscillator.frequency.setValueAtTime(320, context.currentTime); // Friendlier pitch
+      gainNode.gain.setValueAtTime(0.1, context.currentTime); // Soft volume
+    
       oscillator.connect(gainNode);
       gainNode.connect(context.destination);
-
+    
       oscillator.start();
-      oscillator.stop(context.currentTime + 0.05);
+      oscillator.stop(context.currentTime + 0.1); // Slightly longer, softer
     }
+
 
     function toggleFavourite(game, el) {
       const i = favourites.indexOf(game);
