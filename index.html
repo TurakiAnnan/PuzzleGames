@@ -41,6 +41,7 @@
   </script>
 </head>
 <body id="pageBody" class="bg-white text-gray-900 text-base">
+  <audio id="popSound" src="sounds/popEffect.mp3" preload="auto"></audio>
 
   <header class="bg-blue-100 border-b border-black relative">
     <div class="absolute top-4 right-4 flex space-x-4">
@@ -145,21 +146,12 @@
     }
 
     function playPopSound() {
-      const context = new AudioContext();
-      const oscillator = context.createOscillator();
-      const gainNode = context.createGain();
-    
-      oscillator.type = 'sine'; // Smooth tone
-      oscillator.frequency.setValueAtTime(320, context.currentTime); // Friendlier pitch
-      gainNode.gain.setValueAtTime(0.1, context.currentTime); // Soft volume
-    
-      oscillator.connect(gainNode);
-      gainNode.connect(context.destination);
-    
-      oscillator.start();
-      oscillator.stop(context.currentTime + 0.1); // Slightly longer, softer
+      const popSound = document.getElementById('popEffect.mp3');
+      if (popSound) {
+        popSound.currentTime = 0;
+        popSound.play();
+      }
     }
-
 
     function toggleFavourite(game, el) {
       const i = favourites.indexOf(game);
