@@ -192,6 +192,33 @@ function closeTutorial() {
         feedback.textContent = ' Try again!';
         feedback.className = 'message error';
       }
+      function openTutorial() {
+  const modal = document.getElementById('tutorialModal');
+  modal.classList.remove('hidden');
+
+  // Animate in
+  const content = modal.querySelector('.modal-content');
+  setTimeout(() => {
+    content.classList.remove('opacity-0', 'scale-95');
+    content.classList.add('opacity-100', 'scale-100');
+  }, 10);
+}
+
+function closeTutorial() {
+  const modal = document.getElementById('tutorialModal');
+  const content = modal.querySelector('.modal-content');
+
+  // Animate out
+  content.classList.remove('opacity-100', 'scale-100');
+  content.classList.add('opacity-0', 'scale-95');
+
+  // Hide after animation
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+      
     }
 
     window.onload = newPuzzle;
