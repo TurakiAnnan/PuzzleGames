@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 1</h1>
+    <div id="riddle-text">What has keys but can't open locks?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="next-riddle" onclick="nextRiddle()" style="display: none;">Next Riddle</button>
+    <button id="finish-game" onclick="finishGame()" style="display: none;">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "piano"; // Correct answer for Riddle 1
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";  // Smiley face for correct answer
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("next-riddle").style.display = "inline-block"; // Show Next button
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";  // Sad face for incorrect answer
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function nextRiddle() {
+      window.location.href = 'riddle2.html'; // Move to next riddle
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game
+    }
+  </script>
+</body>
+</html>
