@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +6,7 @@
   <title>Puzzle Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- CODE FOR ALLOW SETTING TO BE APPLIED INSTANTLY WHEN OPENING NEW -->
+  <!-- Apply settings on load -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const font = localStorage.getItem('fontSize');
@@ -27,7 +25,6 @@
         body.classList.remove('bg-white', 'bg-gray-100');
         body.classList.add('bg-yellow-50', 'text-black');
 
-        // Apply to specific sections
         const buttons = document.querySelectorAll('button, a');
         buttons.forEach(btn => {
           btn.classList.add('border', 'border-black');
@@ -44,47 +41,38 @@
     });
   </script>
 </head>
-  
 
- <!-- Using body ID for Setting--> 
 <body id="pageBody" class="bg-white text-gray-900 text-base">
-  
 
-  <!-- Settings + Login  BUTTONS-->
+  <!-- Settings + Login -->
   <header class="bg-blue-100 border-b border-black relative">
     <div class="absolute top-4 right-4 flex space-x-4">
       <a href="settings.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
-        <span class="inline-block w-5 h-5 mr-2">⚙️</span>
-        Settings
+        <span class="inline-block w-5 h-5 mr-2">⚙️</span>Settings
       </a>
       <a href="login.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
-        <span class="inline-block w-5 h-5 mr-2">👤</span>
-        Login
+        <span class="inline-block w-5 h-5 mr-2">👤</span>Login
       </a>
     </div>
 
-
-    <!-- Favourites and Searching Button -->
+    <!-- Title + Favourites + Search -->
     <div class="grid grid-cols-3 items-center px-12 py-6">
       <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
       <div class="flex justify-center gap-x-10 items-center">
         <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center mr-4">
-          <span class="inline-block w-5 h-5 mr-2">⭐</span>
-          Favourites
+          <span class="inline-block w-5 h-5 mr-2">⭐</span>Favourites
         </button>
         <div class="flex rounded bg-gray-200 overflow-hidden">
           <input id="searchInput" type="text" placeholder="Search games..." class="px-3 py-2 text-sm bg-gray-200 outline-none">
           <button onclick="handleSearch()" class="px-4 py-2 text-black font-semibold text-lg hover:bg-gray-300 flex items-center">
-            <span class="inline-block w-5 h-5 mr-2">🔍</span>
-            Search
+            <span class="inline-block w-5 h-5 mr-2">🔍</span>Search
           </button>
         </div>
       </div>
       <div></div>
     </div>
 
-
-    <!-- Navigation Bar Start -->
+    <!-- Navigation -->
     <hr class="border-t border-black" />
     <nav class="bg-black text-white">
       <ul class="flex space-x-6 px-6 py-2 text-lg justify-center">
@@ -95,61 +83,72 @@
     </nav>
   </header>
 
-  
-<body>
- 
+  <!-- Game Section -->
+  <div class="anagram-box mt-[100px] text-center border-4 border-black rounded-xl max-w-xl mx-auto p-[40px]">
+    <h1 class="text-2xl font-bold mb-4">Anagram</h1>
+    <label for="difficulty" class="block mb-2">Difficulty:</label>
+    <select id="difficulty" onchange="newPuzzle()" class="mb-4 px-4 py-2 border rounded">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="hard">Hard</option>
+    </select>
 
-<div class="anagram-box mt-[100px] text-center border-4 border-black rounded-xl max-w-xl mx-auto p-[40px]">
-  <h1 class="text-center">anagram</h1>
-  <label for="difficulty">Difficulty:</label>
-  <select id="difficulty" onchange="newPuzzle()">
-    <option value="easy">Easy</option>
-    <option value="medium" selected>Medium</option>
-    <option value="hard">Hard</option>
-  </select>
-
-  <div class="scrambled" id="scrambled-word">Loading...</div>
-  <input type="text" id="user-guess" placeholder="Your guess here..." />
-  <button onclick="checkAnswer()">Submit</button>
-  <button onclick="newPuzzle()">Skip</button>
-  <div class="message" id="feedback"></div>
-   <button onclick="openTutorial()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-4">
-  How to Play
-</button>
-</div>
-
-
-  <!-- Tutorial Modal -->
-<!-- Tutorial Modal -->
-<div id="tutorialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out" onclick="closeTutorial()">
-  <div onclick="event.stopPropagation()" class="bg-white text-black p-8 rounded-2xl max-w-xl w-[90%] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out modal-content">
-    <h2 class="text-3xl font-bold mb-4 text-center">🧩 How to Play</h2>
-    <p class="mb-4 text-lg leading-relaxed">
-      Unscramble the jumbled word shown on screen. Select a difficulty level, type your guess into the input, and click <strong>"Submit"</strong> to see if you're right!
-      <br /><br />
-      Need a break? Hit <strong>"Skip"</strong> for a new puzzle. Test your brain and have fun!
-    </p>
-    <div class="flex justify-center">
-      <button onclick="closeTutorial()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-xl transition-transform duration-200 hover:scale-105">
-        Got it!
+    <div class="scrambled font-mono text-2xl font-semibold my-4" id="scrambled-word">Loading...</div>
+    <input type="text" id="user-guess" placeholder="Your guess here..." class="border px-4 py-2 rounded mb-4 w-full" />
+    <div class="space-x-4">
+      <button onclick="checkAnswer()" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+        Submit
+      </button>
+      <button onclick="newPuzzle()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
+        Skip
       </button>
     </div>
+    <div class="message mt-4 font-semibold" id="feedback"></div>
+    <button onclick="openTutorial()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-6">
+      How to Play
+    </button>
   </div>
-</div>
 
-
-
-
-
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out" onclick="closeTutorial()">
+    <div onclick="event.stopPropagation()" class="bg-white text-black p-8 rounded-2xl max-w-xl w-[90%] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out modal-content">
+      <h2 class="text-3xl font-bold mb-4 text-center">🧩 How to Play</h2>
+      <p class="mb-4 text-lg leading-relaxed">
+        Unscramble the jumbled word shown on screen. Select a difficulty level, type your guess into the input, and click <strong>"Submit"</strong> to see if you're right!
+        <br /><br />
+        Need a break? Hit <strong>"Skip"</strong> for a new puzzle. Test your brain and have fun!
+      </p>
+      <div class="flex justify-center">
+        <button onclick="closeTutorial()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-xl transition-transform duration-200 hover:scale-105">
+          Got it!
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
     function openTutorial() {
-  document.getElementById('tutorialModal').classList.remove('hidden');
-}
+      const modal = document.getElementById('tutorialModal');
+      modal.classList.remove('hidden');
 
-function closeTutorial() {
-  document.getElementById('tutorialModal').classList.add('hidden');
-}
+      const content = modal.querySelector('.modal-content');
+      setTimeout(() => {
+        content.classList.remove('opacity-0', 'scale-95');
+        content.classList.add('opacity-100', 'scale-100');
+      }, 10);
+    }
+
+    function closeTutorial() {
+      const modal = document.getElementById('tutorialModal');
+      const content = modal.querySelector('.modal-content');
+
+      content.classList.remove('opacity-100', 'scale-100');
+      content.classList.add('opacity-0', 'scale-95');
+
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
 
     const wordList = {
       easy: ['cat', 'dog', 'hat', 'sun', 'box', 'pen'],
@@ -168,8 +167,7 @@ function closeTutorial() {
       const difficulty = document.getElementById('difficulty').value;
       const words = wordList[difficulty];
       currentWord = words[Math.floor(Math.random() * words.length)];
-      
-      
+
       do {
         scrambled = shuffleWord(currentWord);
       } while (scrambled === currentWord);
@@ -180,50 +178,22 @@ function closeTutorial() {
     }
 
     function checkAnswer() {
-   
       const guess = document.getElementById('user-guess').value.trim().toLowerCase();
       const feedback = document.getElementById('feedback');
 
       if (guess === currentWord) {
-        feedback.textContent = ' Correct!';
-        feedback.className = 'message success';
+        feedback.textContent = '✅ Correct!';
+        feedback.className = 'message success text-green-600';
         setTimeout(() => newPuzzle(), 1000);
       } else {
-        feedback.textContent = ' Try again!';
-        feedback.className = 'message error';
+        feedback.textContent = '❌ Try again!';
+        feedback.className = 'message error text-red-600';
       }
-      function openTutorial() {
-  const modal = document.getElementById('tutorialModal');
-  modal.classList.remove('hidden');
-
-  // Animate in
-  const content = modal.querySelector('.modal-content');
-  setTimeout(() => {
-    content.classList.remove('opacity-0', 'scale-95');
-    content.classList.add('opacity-100', 'scale-100');
-  }, 10);
-}
-
-function closeTutorial() {
-  const modal = document.getElementById('tutorialModal');
-  const content = modal.querySelector('.modal-content');
-
-  // Animate out
-  content.classList.remove('opacity-100', 'scale-100');
-  content.classList.add('opacity-0', 'scale-95');
-
-  // Hide after animation
-  setTimeout(() => {
-    modal.classList.add('hidden');
-  }, 300);
-}
-
-      
     }
 
     window.onload = newPuzzle;
-  
   </script>
 
 </body>
 </html>
+
