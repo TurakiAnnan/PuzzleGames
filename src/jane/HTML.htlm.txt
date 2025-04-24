@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to the Riddle Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <img src="riddler.jpg" alt="Welcome Riddle Image" class="welcome-image">
+    <h1>Welcome to the Riddle Game!</h1>
+    
+    <!-- Start Game Button -->
+    <button onclick="startGame()">Start Game</button>
+
+    <!-- More Information Button -->
+    <a href="more-info.html" class="button-link">More Information</a> <!-- This links to more-info.html -->
+  </div>
+
+  <script>
+    // This function will redirect to the first riddle page when the Start Game button is clicked
+    function startGame() {
+      window.location.href = 'riddle1.html'; // Go to the first riddle page
+    }
+  </script>
+</body>
+</html>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>More Information</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>More Information</h1>
+    
+    <!-- Adding some introductory text -->
+    <p>Welcome to the Riddle Game! Here you'll find all the details you need to understand how the game works and what to expect.</p>
+    
+    <!-- How to play section -->
+    <h2>How to Play</h2>
+    <p>In this game, you'll be given a series of riddles to solve. To move forward, simply enter your answer and click "Next" to go to the next riddle. If you're stuck, feel free to check the hint!</p>
+
+    <!-- Game rules section -->
+    <h2>Game Rules</h2>
+    <p>There are a few simple rules to keep in mind:</p>
+    <ul>
+      <li>Each riddle has one correct answer.</li>
+      <li>You cannot skip a riddle without answering.</li>
+      <li>If you answer incorrectly, you can try again!</li>
+    </ul>
+
+    <!-- What to expect section -->
+    <h2>What to Expect in Each Riddle</h2>
+    <p>Each riddle will challenge your creativity and logic skills. Expect riddles that range from easy to tricky, with some requiring thinking outside the box. Have fun and enjoy the challenge!</p>
+
+    <!-- Back to the Welcome Page button -->
+    <a href="index.html" class="button-link">Back to Welcome Page</a> <!-- This links back to index.html -->
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 1</h1>
+    <div id="riddle-text">What has keys but can't open locks?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="next-riddle" onclick="nextRiddle()" style="display: none;">Next Riddle</button>
+    <button id="finish-game" onclick="finishGame()" style="display: none;">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "piano"; // Correct answer for Riddle 1
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";  // Smiley face for correct answer
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("next-riddle").style.display = "inline-block"; // Show Next button
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";  // Sad face for incorrect answer
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function nextRiddle() {
+      window.location.href = 'riddle2.html'; // Move to next riddle
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 2</h1>
+    <div id="riddle-text">I speak without a mouth and hear without ears. I have nobody, but I come alive with wind. What am I?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="next-riddle" onclick="nextRiddle()" style="display: none;">Next Riddle</button>
+    <button id="finish-game" onclick="finishGame()" style="display: none;">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "echo"; // Correct answer for Riddle 2
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("next-riddle").style.display = "inline-block";
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function nextRiddle() {
+      window.location.href = 'riddle3.html'; // Move to next riddle
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 2</h1>
+    <div id="riddle-text">I speak without a mouth and hear without ears. I have nobody, but I come alive with wind. What am I?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="next-riddle" onclick="nextRiddle()" style="display: none;">Next Riddle</button>
+    <button id="finish-game" onclick="finishGame()" style="display: none;">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "echo"; // Correct answer for Riddle 2
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("next-riddle").style.display = "inline-block";
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function nextRiddle() {
+      window.location.href = 'riddle3.html'; // Move to next riddle
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 3</h1>
+    <div id="riddle-text">The more of this there is, the less you see. What is it?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="finish-game" onclick="finishGame()">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "darkness"; // Correct answer for Riddle 3
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("finish-game").style.display = "inline-block";
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game and go to Thank You page
+    }
+  </script>
+</body>
+</html>
+
+// This script will be used to handle the logic for checking answers on each riddle page.
+
+let correctAnswer = ""; // To store the correct answer for each riddle
+
+// This function sets the correct answer for the current riddle
+function setCorrectAnswer(answer) {
+  correctAnswer = answer;
+}
+
+// This function checks the user's answer
+function checkAnswer() {
+  const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+  const feedback = document.getElementById('feedback');
+  const emoji = document.getElementById('emoji');
+
+  if (userAnswer === correctAnswer) {
+    feedback.textContent = "Correct! Well done!";
+    emoji.textContent = "😊"; // Smiley face for correct answer
+    feedback.classList.remove("incorrect");
+    feedback.classList.add("correct");
+
+    // Display the Next button or Finish button, depending on the riddle
+    const nextButton = document.getElementById("next-riddle");
+    const finishButton = document.getElementById("finish-game");
+
+    if (nextButton) {
+      nextButton.style.display = "inline-block"; // Show Next button for riddle 1 and 2
+    }
+    if (finishButton) {
+      finishButton.style.display = "inline-block"; // Show Finish button for the last riddle
+    }
+
+    // Disable the input and submit button after answering
+    document.getElementById("answer-input").disabled = true;
+    document.querySelector("button").disabled = true;
+  } else {
+    feedback.textContent = "Oops, try again!";
+    emoji.textContent = "😞"; // Sad face for incorrect answer
+    feedback.classList.remove("correct");
+    feedback.classList.add("incorrect");
+  }
+}
+
+// This function moves the user to the next riddle page
+function nextRiddle() {
+  if (window.location.pathname.includes("riddle1.html")) {
+    window.location.href = 'riddle2.html'; // Go to riddle 2
+  } else if (window.location.pathname.includes("riddle2.html")) {
+    window.location.href = 'riddle3.html'; // Go to riddle 3
+  }
+}
+
+// This function finishes the game and redirects to the Thank You page
+function finishGame() {
+  window.location.href = 'thankyou.html'; // Go to the Thank You page
+}
+
+// This function will be called when the page loads to set the correct answer based on the riddle page
+window.onload = function () {
+  if (window.location.pathname.includes("riddle1.html")) {
+    setCorrectAnswer("piano"); // Set the answer for riddle 1
+  } else if (window.location.pathname.includes("riddle2.html")) {
+    setCorrectAnswer("echo"); // Set the answer for riddle 2
+  } else if (window.location.pathname.includes("riddle3.html")) {
+    setCorrectAnswer("darkness"); // Set the answer for riddle 3
+  }
+};
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Thank You for Playing!</h1>
+    <p>Congratulations! You've completed the riddle game.</p>
+
+    <!-- Use the locally saved Riddler Wallpaper Image -->
+    <img src="riddler2.jpg" alt="Riddler Wallpaper" class="thank-you-image">
+
+    <button onclick="window.location.href='index.html'">Play Again</button>
+
+    <!-- Contact Us Button -->
+    <button onclick="window.location.href='mailto:40690793@live.napier.ac.uk?subject=Contact%20Us&body=Hello,%20I%20have%20a%20question%20about%20the%20riddle%20game.'">Contact Us</button>
+  </div>
+</body>
+</html>
