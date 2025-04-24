@@ -120,17 +120,23 @@
 
 
   <!-- Tutorial Modal -->
-<div id="tutorialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="bg-white text-black p-8 rounded-xl max-w-lg shadow-lg text-left">
-    <h2 class="text-2xl font-bold mb-4">How to Play Anagram</h2>
-    <p class="mb-4">
-      Unscramble the letters shown to guess the correct word. Choose a difficulty level to start, then type your guess and hit "Submit". You can skip if you're stuck!
+<!-- Tutorial Modal -->
+<div id="tutorialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out" onclick="closeTutorial()">
+  <div onclick="event.stopPropagation()" class="bg-white text-black p-8 rounded-2xl max-w-xl w-[90%] shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-out modal-content">
+    <h2 class="text-3xl font-bold mb-4 text-center">🧩 How to Play</h2>
+    <p class="mb-4 text-lg leading-relaxed">
+      Unscramble the jumbled word shown on screen. Select a difficulty level, type your guess into the input, and click <strong>"Submit"</strong> to see if you're right!
+      <br /><br />
+      Need a break? Hit <strong>"Skip"</strong> for a new puzzle. Test your brain and have fun!
     </p>
-    <button onclick="closeTutorial()" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
-      Close
-    </button>
+    <div class="flex justify-center">
+      <button onclick="closeTutorial()" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-xl transition-transform duration-200 hover:scale-105">
+        Got it!
+      </button>
+    </div>
   </div>
 </div>
+
 
 
 
@@ -174,6 +180,32 @@ function closeTutorial() {
     }
 
     function checkAnswer() {
+      function openTutorial() {
+  const modal = document.getElementById('tutorialModal');
+  modal.classList.remove('hidden');
+
+  // Animate in
+  const content = modal.querySelector('.modal-content');
+  setTimeout(() => {
+    content.classList.remove('opacity-0', 'scale-95');
+    content.classList.add('opacity-100', 'scale-100');
+  }, 10);
+}
+
+function closeTutorial() {
+  const modal = document.getElementById('tutorialModal');
+  const content = modal.querySelector('.modal-content');
+
+  // Animate out
+  content.classList.remove('opacity-100', 'scale-100');
+  content.classList.add('opacity-0', 'scale-95');
+
+  // Hide after animation
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
       const guess = document.getElementById('user-guess').value.trim().toLowerCase();
       const feedback = document.getElementById('feedback');
 
