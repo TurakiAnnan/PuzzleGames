@@ -84,30 +84,38 @@
   </header>
 
   <!-- Game Section -->
-  <div class="anagram-box mt-[100px] text-center border-4 border-black rounded-xl max-w-xl mx-auto p-[40px]">
-    <h1 class="text-2xl font-bold mb-4">Anagram</h1>
-    <label for="difficulty" class="block mb-2">Difficulty:</label>
-    <select id="difficulty" onchange="newPuzzle()" class="mb-4 px-4 py-2 border rounded">
-      <option value="easy">Easy</option>
-      <option value="medium" selected>Medium</option>
-      <option value="hard">Hard</option>
-    </select>
+  <!-- Anagram Box with Interactive Buttons -->
+<div class="anagram-box mt-[100px] text-center border-4 border-black rounded-xl max-w-xl mx-auto p-[40px]">
+  <h1 class="text-center">Anagram</h1>
+  <label for="difficulty">Difficulty:</label>
+  <select id="difficulty" onchange="newPuzzle()">
+    <option value="easy">Easy</option>
+    <option value="medium" selected>Medium</option>
+    <option value="hard">Hard</option>
+  </select>
 
-    <div class="scrambled font-mono text-2xl font-semibold my-4" id="scrambled-word">Loading...</div>
-    <input type="text" id="user-guess" placeholder="Your guess here..." class="border px-4 py-2 rounded mb-4 w-full" />
-    <div class="space-x-4">
-      <button onclick="checkAnswer()" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-        Submit
-      </button>
-      <button onclick="newPuzzle()" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
-        Skip
-      </button>
-    </div>
-    <div class="message mt-4 font-semibold" id="feedback"></div>
-    <button onclick="openTutorial()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-6">
-      How to Play
-    </button>
-  </div>
+  <div class="scrambled" id="scrambled-word">Loading...</div>
+  <input type="text" id="user-guess" placeholder="Your guess here..." />
+  
+  <!-- Submit Button with Hover and Focus Effects -->
+  <button onclick="checkAnswer()" class="bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-white py-2 px-4 rounded-lg shadow-md transition duration-300">
+    Submit
+  </button>
+  
+  <!-- Skip Button with Hover and Focus Effects -->
+  <button onclick="newPuzzle()" class="bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 text-white py-2 px-4 rounded-lg shadow-md transition duration-300">
+    Skip
+  </button>
+
+  <!-- Feedback Message -->
+  <div class="message" id="feedback"></div>
+
+  <!-- Tutorial Button with Hover and Focus Effects -->
+  <button onclick="openTutorial()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-4 transition duration-300 ease-in-out">
+    How to Play
+  </button>
+</div>
+
 
   <!-- Tutorial Modal -->
   <div id="tutorialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300 ease-in-out" onclick="closeTutorial()">
