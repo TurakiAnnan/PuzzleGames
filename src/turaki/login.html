@@ -40,7 +40,7 @@
       const savedUser = localStorage.getItem('username');
       if (loginName === savedUser) {
         alert(`Welcome back, ${loginName}!`);
-        window.location.href = 'index.html';
+        window.location.href = 'welcome.html';
       } else {
         alert("User not found. Please sign up first.");
       }
@@ -85,7 +85,7 @@
 
       //Create Popup
       alert(`Account created for ${signupName}!`);
-      window.location.href = 'index.html';
+      window.location.href = 'welcome.html';
     });
   </script>
 
