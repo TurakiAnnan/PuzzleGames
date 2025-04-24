@@ -177,22 +177,31 @@
       document.getElementById('feedback').textContent = '';
     }
 
-    function checkAnswer() {
-      const guess = document.getElementById('user-guess').value.trim().toLowerCase();
-      const feedback = document.getElementById('feedback');
+ function checkAnswer() {
+  const guess = document.getElementById('user-guess').value.trim().toLowerCase();
+  const feedback = document.getElementById('feedback');
 
-      if (guess === currentWord) {
-        feedback.textContent = '✅ Correct!';
-        feedback.className = 'message success text-green-600';
-        setTimeout(() => newPuzzle(), 1000);
-      } else {
-        feedback.textContent = '❌ Try again!';
-        feedback.className = 'message error text-red-600';
-      }
-    }
+  const correctSound = document.getElementById('correctSound');
+  const wrongSound = document.getElementById('wrongSound');
+
+  if (guess === currentWord) {
+    correctSound.play();
+    feedback.textContent = '✅ Correct!';
+    feedback.className = 'message success text-green-600';
+    setTimeout(() => newPuzzle(), 1000);
+  } else {
+    wrongSound.play();
+    feedback.textContent = '❌ Try again!';
+    feedback.className = 'message error text-red-600';
+  }
+}
+
 
     window.onload = newPuzzle;
   </script>
+<audio id="correctSound" src="https://www.myinstants.com/media/sounds/correct-answer.mp3"></audio>
+<audio id="wrongSound" src="https://www.myinstants.com/media/sounds/wrong-answer.mp3"></audio>
+
 
 </body>
 </html>
