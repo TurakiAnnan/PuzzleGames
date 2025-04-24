@@ -65,3 +65,8 @@ window.onload = function () {
     setCorrectAnswer("darkness"); // Set the answer for riddle 3
   }
 };
+
+//This JavaScript code handles the logic for checking answers across all the riddle pages 
+//in the Riddle Game. It sets the correct answer based on the current page, checks if the 
+//user's input matches, gives feedback with text and emojis, and shows the appropriate button 
+//(Next or Finish). It also controls navigation between riddles and to the final thank you page.
