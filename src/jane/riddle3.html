@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Game - Riddle 3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Riddle 3</h1>
+    <div id="riddle-text">The more of this there is, the less you see. What is it?</div>
+    <input type="text" id="answer-input" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <div id="feedback-container">
+      <span id="feedback"></span>
+      <span id="emoji"></span>
+    </div>
+    <button id="finish-game" onclick="finishGame()">Finish Game</button>
+  </div>
+
+  <script>
+    const correctAnswer = "darkness"; // Correct answer for Riddle 3
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
+      const feedback = document.getElementById('feedback');
+      const emoji = document.getElementById('emoji');
+
+      if (userAnswer === correctAnswer) {
+        feedback.textContent = "Correct! Well done!";
+        emoji.textContent = "😊";
+        feedback.classList.remove("incorrect");
+        feedback.classList.add("correct");
+
+        document.getElementById("finish-game").style.display = "inline-block";
+        document.getElementById("answer-input").disabled = true;
+        document.querySelector("button").disabled = true;
+      } else {
+        feedback.textContent = "Oops, try again!";
+        emoji.textContent = "😞";
+        feedback.classList.remove("correct");
+        feedback.classList.add("incorrect");
+      }
+    }
+
+    function finishGame() {
+      window.location.href = 'thankyou.html'; // Finish the game and go to Thank You page
+    }
+  </script>
+</body>
+</html>
