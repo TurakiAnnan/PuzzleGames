@@ -112,6 +112,12 @@
   <!-- Feedback Message -->
   <div class="message" id="feedback"></div>
 
+  <div id="streakCounter" class="mt-4 text-lg font-bold text-green-700">
+  Streak: 0
+</div>
+
+  
+
   <!-- Tutorial Button with Hover and Focus Effects -->
   <button onclick="openTutorial()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mb-4 transition duration-300 ease-in-out">
     How to Play
@@ -187,9 +193,12 @@
       document.getElementById('feedback').textContent = '';
     }
 
- function checkAnswer() {
+ let streak = 0; // New streak variable
+
+function checkAnswer() {
   const guess = document.getElementById('user-guess').value.trim().toLowerCase();
   const feedback = document.getElementById('feedback');
+  const streakCounter = document.getElementById('streakCounter');
 
   const correctSound = document.getElementById('correctSound');
   const wrongSound = document.getElementById('wrongSound');
@@ -198,13 +207,18 @@
     correctSound.play();
     feedback.textContent = '✅ Correct!';
     feedback.className = 'message success text-green-600';
+    streak++; // Increase streak
+    streakCounter.textContent = `Streak: ${streak}`; // Update the counter
     setTimeout(() => newPuzzle(), 1000);
   } else {
     wrongSound.play();
     feedback.textContent = '❌ Try again!';
     feedback.className = 'message error text-red-600';
+    streak = 0; // Reset streak
+    streakCounter.textContent = `Streak: ${streak}`; // Reset counter
   }
 }
+
 
 
    window.onload = function () {
