@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Puzzle Website</title>
+<link href="puzzles1.css" type="text/css"	rel="stylesheet">
+<script src="hangman_script.js" defer></script>
+</head>
+
+<body id="pageBody">
+
+<!-- Settings + Login  BUTTONS-->
+  <header class="header">
+    <div class="top-buttons">
+      <a href="settings.html" class="action-button">
+        <span class="icon">⚙️</span>
+        Settings
+      </a>
+      <a href="login.html" class="action-button">
+        <span class="icon">👤</span>
+        Login
+      </a>
+    </div>
+
+<!-- Favourites and Searching Button -->
+    <div class="header-main">
+      <h1 class="title">Puzzle Games</h1>
+      <div class="search-favorites">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="action-button">
+          <span class="icon">⭐</span>
+          Favourites
+        </button>
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search games...">
+          <button onclick="handleSearch()" class="search-button">
+            <span class="icon">🔍</span>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!-- Navigation Bar Start -->
+    <hr class="divider" />
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Luck Based</a></li>
+        <li><a href="#">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<body>
+
+<!-- Main section -->
+<main>
+
+<!-- Game modal -->
+ <div class="game-modal" id="over">
+      <div class="content">
+        <h4>Game Over!</h4>
+        <p>The correct word was: </p>
+        <button class="play-again">Play Again</button>
+		<button onclick="window.location.href='hangman_end.html'">End game</button>
+      </div>
+    </div>
+
+<!-- Hangman game container -->
+    <div class="container">
+      <div class="hangman-box">
+        <img src="images/start.png" alt="hangman-img"/>
+      </div>
+      <div class="game-box">
+        <ul class="word-container"></ul>
+        <h4 class="hint-text">
+          Hint:
+          <b></b>
+        </h4>
+        <h4 class="guess-counter">
+          Incorrect guesses:
+          <b>0 / 6</b>
+        </h4>
+        <div class="keyboard"></div>
+      </div>
+    </div>
+					
+</main>
+		</body>
+</html>

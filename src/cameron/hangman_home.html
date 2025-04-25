@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Puzzle Website</title>
+<link href="puzzles1.css" type="text/css"	rel="stylesheet">
+
+</head>
+
+<body id="pageBody">
+
+<!-- Settings + Login  BUTTONS-->
+  <header class="header">
+    <div class="top-buttons">
+      <a href="settings.html" class="action-button">
+        <span class="icon">⚙️</span>
+        Settings
+      </a>
+      <a href="login.html" class="action-button">
+        <span class="icon">👤</span>
+        Login
+      </a>
+    </div>
+
+<!-- Favourites and Searching Button -->
+    <div class="header-main">
+      <h1 class="title">Puzzle Games</h1>
+      <div class="search-favorites">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="action-button">
+          <span class="icon">⭐</span>
+          Favourites
+        </button>
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search games...">
+          <button onclick="handleSearch()" class="search-button">
+            <span class="icon">🔍</span>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!-- Navigation Bar Start -->
+    <hr class="divider" />
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Luck Based</a></li>
+        <li><a href="#">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<body> 
+
+<!-- Main section -->
+<main>
+
+<h3>Welcome</h3>
+<p>This puzzle is hangman and involves you trying to guess the word by
+   choosing one letter at a time.</p>
+<p>Watch out though, you will only have 6 lives or you will fail the
+   level and have to try again.</p>
+<p>Press start below to start this puzzle game</p>
+<p>Good luck!<p>
+
+
+<!-- Button to start game -->
+<button class="button" onclick="window.location.href='hangman_lvl1.html'">Start game</button>
+					
+</main>
+		
+		</body>
+</html>

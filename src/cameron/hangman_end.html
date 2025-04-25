@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Puzzle Website</title>
+<link href="puzzles1.css" type="text/css"	rel="stylesheet">
+
+</head>
+
+<body id="pageBody">
+
+<!-- Settings + Login  BUTTONS-->
+  <header class="header">
+    <div class="top-buttons">
+      <a href="settings.html" class="action-button">
+        <span class="icon">⚙️</span>
+        Settings
+      </a>
+      <a href="login.html" class="action-button">
+        <span class="icon">👤</span>
+        Login
+      </a>
+    </div>
+
+<!-- Favourites and Searching Button -->
+    <div class="header-main">
+      <h1 class="title">Puzzle Games</h1>
+      <div class="search-favorites">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="action-button">
+          <span class="icon">⭐</span>
+          Favourites
+        </button>
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search games...">
+          <button onclick="handleSearch()" class="search-button">
+            <span class="icon">🔍</span>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!-- Navigation Bar Start -->
+    <hr class="divider" />
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Luck Based</a></li>
+        <li><a href="#">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<body> 
+
+<!-- Main section -->
+<main>
+
+<h3>The End</h3>
+
+<p>Well done if you got them correct!</p>
+<img src="images/well_done.png" alt="hangman-img" class="final_image"/>
+<p>You can always try again if not</p>
+<p>Press play again to restart or return to homepage
+   to go back to the home screen.<p>
+   
+<!-- Buttons to play again or return to home screen -->   
+<button class="button" onclick="window.location.href='hangman_lvl1.html'">Play again</button>
+<button class="button" onclick="window.location.href='hangman_home.html'">Return to home screen</button>
+				
+</main>
+		</body>
+</html>
