@@ -205,7 +205,11 @@
 }
 
 
-    window.onload = newPuzzle;
+   window.onload = function () {
+  newPuzzle();
+  openTutorial();
+};
+
   </script>
 <audio id="correctSound" src="ytmp3free.cc_correct-answer-sound-effect-youtubemp3free.org.mp3"></audio>
 <audio id="wrongSound" src="ytmp3free.cc_wrong-answer-sound-effect-youtubemp3free.org.mp3"></audio>
