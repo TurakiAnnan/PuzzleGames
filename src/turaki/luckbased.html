@@ -102,7 +102,16 @@
       </div>
   </main>
 
-  <script>
+<script>
+    // To make the custom click to play with users name
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = localStorage.getItem('username');
+      if (!user) {
+        window.location.href = 'src/turaki/login.html';
+      } else {
+        document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
+      }
+
       let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
       let showingFavouritesOnly = false;
 
