@@ -80,29 +80,28 @@
   </header>
 
   <main class="p-6">
-    <div class="mb-8 text-center">
-      <h2 class="text-inherit font-bold mb-4">Click to play a game!</h2>
+<div class="flex flex-wrap gap-6 justify-center">
+  <div data-game-box="Riddles" class="w-40">
+    <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+      Riddles
+      <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
     </div>
-      <div data-game-box="Riddles">
-        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
-          Riddles
-          <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
-        </div>
-        <a href="../jane/index.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition">
-          <img src="../jane/riddler.png" alt="Riddles Game Preview" class="max-h-32 max-w-32 object-contain">
-        </a>
-      </div>
+    <a href="../jane/index.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition flex justify-center items-center overflow-hidden">
+      <img src="../jane/riddler.png" alt="Riddles Game Preview" class="max-h-32 max-w-32 object-contain">
+    </a>
+  </div>
 
-      <div data-game-box="Anagram">
-        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
-          Anagram
-          <span class="cursor-pointer select-none" data-game="Anagram">☆</span>
-        </div>
-        <a href="../robbie/anagram.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition overflow-hidden flex justify-center items-center">
-          <img src="../../assets/anagram.png" alt="Anagram Game Preview" class="max-h-32 max-w-32 object-contain">
-        </a>
-      </div>
+  <div data-game-box="Anagram" class="w-40">
+    <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+      Anagram
+      <span class="cursor-pointer select-none" data-game="Anagram">☆</span>
     </div>
+    <a href="../robbie/anagram.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition flex justify-center items-center overflow-hidden">
+      <img src="../../assets/anagram.png" alt="Anagram Game Preview" class="max-h-32 max-w-32 object-contain">
+    </a>
+  </div>
+</div>
+
   </main>
 
   <script>
