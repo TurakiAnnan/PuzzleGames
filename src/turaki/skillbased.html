@@ -44,7 +44,7 @@
 
 <!-- Loading audio from assest and page id is use for accesibility -->
 <body id="pageBody" class="bg-white text-gray-900 text-base">
-  <audio id="popSound" src="assets/popEffect.mp3" preload="auto"></audio>
+  <audio id="popSound" src="../../assets/popEffect.mp3" preload="auto"></audio>
 
   <!--Header buttons configuration settings, account, favourits and search -->
   <header class="bg-blue-100 border-b border-black relative">
@@ -109,8 +109,16 @@
 
 
   </main>
+ <script>
+    // To make the custom click to play with users name
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = localStorage.getItem('username');
+      if (!user) {
+        window.location.href = 'src/turaki/login.html';
+      } else {
+        document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
+      }
 
-  <script>
       let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
       let showingFavouritesOnly = false;
 
