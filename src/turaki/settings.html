@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings</title>
 
-  <!-- Internal CSS only for settings page -->
+  <!-- Internal CSS for Settings Page -->
   <style>
     body {
-      background-color: #f3f4f6; /* light gray */
-      color: #1f2937; /* dark gray */
+      background-colour: #f3f4f6; /* light grey */
+      colour: #1f2937; /* dark grey */
       padding: 2rem;
       min-height: 100vh;
       font-family: system-ui, sans-serif;
@@ -17,7 +17,7 @@
     }
 
     a {
-      color: #2563eb;
+      colour: #2563eb;
       text-decoration: none;
       font-size: 1.125rem;
       font-weight: 600;
@@ -39,14 +39,13 @@
     h1 {
       font-size: 2rem;
       font-weight: 700;
-      text-align: center;
+      text-align: centre;
       margin-bottom: 2rem;
     }
 
     label {
       font-size: 1.125rem;
       font-weight: 600;
-      display: block;
       margin-bottom: 0.5rem;
     }
 
@@ -54,7 +53,6 @@
       font-size: 1rem;
       padding: 0.5rem;
       margin-bottom: 1.5rem;
-      width: 100%;
       border: 1px solid #d1d5db;
       border-radius: 0.375rem;
     }
@@ -62,8 +60,18 @@
     .flex-between {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: centre;
       margin-bottom: 1.5rem;
+    }
+
+    .flex-between label {
+      margin-bottom: 0;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
     }
 
     .button {
@@ -72,28 +80,28 @@
       padding: 0.75rem;
       font-size: 1.125rem;
       font-weight: 700;
-      color: white;
+      colour: white;
       border: none;
       border-radius: 0.5rem;
       margin-top: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-colour 0.3s ease;
     }
 
-    .save-btn {
-      background-color: #16a34a; /* green */
+    .save-button {
+      background-colour: #16a34a; /* green */
     }
 
-    .save-btn:hover {
-      background-color: #15803d;
+    .save-button:hover {
+      background-colour: #15803d;
     }
 
-    .reset-btn {
-      background-color: #dc2626; /* red */
+    .reset-button {
+      background-colour: #dc2626; /* red */
     }
 
-    .reset-btn:hover {
-      background-color: #b91c1c;
+    .reset-button:hover {
+      background-colour: #b91c1c;
     }
   </style>
 </head>
@@ -123,20 +131,20 @@
     <!-- High Contrast Setting -->
     <div class="flex-between">
       <label for="contrastToggle">High Contrast Mode</label>
-      <input type="checkbox" id="contrastToggle" />
+      <input type="checkbox" id="contrastToggle" class="checkbox">
     </div>
 
     <!-- Dark Mode Setting -->
     <div class="flex-between">
       <label for="darkModeToggle">Dark Mode</label>
-      <input type="checkbox" id="darkModeToggle" />
+      <input type="checkbox" id="darkModeToggle" class="checkbox">
     </div>
 
     <!-- Save Button -->
-    <button onclick="saveSettings()" class="button save-btn">Save Settings</button>
+    <button onclick="saveSettings()" class="button save-button">Save Settings</button>
 
     <!-- Reset Button -->
-    <button onclick="resetSettings()" class="button reset-btn">Reset All Settings</button>
+    <button onclick="resetSettings()" class="button reset-button">Reset All Settings</button>
   </div>
 
   <script>
@@ -145,7 +153,6 @@
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.getElementById('settingsBody');
 
-    // Load saved settings
     window.addEventListener('DOMContentLoaded', () => {
       fontSizeSelect.value = localStorage.getItem('fontSize') || 'large';
       contrastToggle.checked = localStorage.getItem('contrast') === 'high';
@@ -153,14 +160,13 @@
       applyPreview();
     });
 
-    // Live preview
     fontSizeSelect.addEventListener('change', applyPreview);
     contrastToggle.addEventListener('change', applyPreview);
     darkModeToggle.addEventListener('change', applyPreview);
 
     function applyPreview() {
-      body.style.backgroundColor = darkModeToggle.checked ? '#111827' : (contrastToggle.checked ? '#fefcbf' : '#f3f4f6');
-      body.style.color = contrastToggle.checked || darkModeToggle.checked ? 'black' : '#1f2937';
+      body.style.backgroundColour = darkModeToggle.checked ? '#111827' : (contrastToggle.checked ? '#fefcbf' : '#f3f4f6');
+      body.style.colour = contrastToggle.checked || darkModeToggle.checked ? 'black' : '#1f2937';
 
       const font = fontSizeSelect.value;
       if (font === 'small') body.style.fontSize = '0.875rem';
