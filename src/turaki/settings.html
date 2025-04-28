@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings</title>
 
-  <!-- Internal CSS for Settings Page -->
   <style>
+    /* General Settings Style */
     body {
       background-color: #f3f4f6; /* light grey */
       color: #1f2937; /* dark grey */
@@ -14,8 +14,27 @@
       min-height: 100vh;
       font-family: system-ui, sans-serif;
       transition: all 0.3s ease;
+      font-size: 1rem; /* Default medium */
     }
 
+    /* Font size options */
+    .small-text {
+      font-size: 0.875rem;
+    }
+
+    .medium-text {
+      font-size: 1rem;
+    }
+
+    .large-text {
+      font-size: 1.125rem;
+    }
+
+    .xlarge-text {
+      font-size: 1.25rem;
+    }
+
+    /* Other styles the same */
     a {
       color: #2563eb;
       text-decoration: none;
@@ -64,10 +83,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .flex-between label {
-      margin-bottom: 0;
-    }
-
     .checkbox {
       width: 20px;
       height: 20px;
@@ -108,16 +123,13 @@
 
 <body id="settingsBody">
 
-  <!-- Return Link -->
   <div style="max-width: 600px; margin: 0 auto 2rem;">
     <a href="../../index.html">← Return to Welcome Page</a>
   </div>
 
-  <!-- Settings Box -->
   <div class="settings-box">
     <h1>Settings</h1>
 
-    <!-- Font Size Setting -->
     <div>
       <label for="fontSize">Font Size</label>
       <select id="fontSize">
@@ -128,22 +140,17 @@
       </select>
     </div>
 
-    <!-- High Contrast Setting -->
     <div class="flex-between">
       <label for="contrastToggle">High Contrast Mode</label>
       <input type="checkbox" id="contrastToggle" class="checkbox">
     </div>
 
-    <!-- Dark Mode Setting -->
     <div class="flex-between">
       <label for="darkModeToggle">Dark Mode</label>
       <input type="checkbox" id="darkModeToggle" class="checkbox">
     </div>
 
-    <!-- Save Button -->
     <button onclick="saveSettings()" class="button save-button">Save Settings</button>
-
-    <!-- Reset Button -->
     <button onclick="resetSettings()" class="button reset-button">Reset All Settings</button>
   </div>
 
@@ -153,7 +160,6 @@
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.getElementById('settingsBody');
 
-    // Load saved settings
     window.addEventListener('DOMContentLoaded', () => {
       fontSizeSelect.value = localStorage.getItem('fontSize') || 'large';
       contrastToggle.checked = localStorage.getItem('contrast') === 'high';
@@ -161,30 +167,32 @@
       applyPreview();
     });
 
-    // Live preview on change
     fontSizeSelect.addEventListener('change', applyPreview);
     contrastToggle.addEventListener('change', applyPreview);
     darkModeToggle.addEventListener('change', applyPreview);
 
     function applyPreview() {
+      // Clear font size classes
+      body.classList.remove('small-text', 'medium-text', 'large-text', 'xlarge-text');
+
       const font = fontSizeSelect.value;
-      if (font === 'small') body.style.fontSize = '0.875rem';
-      else if (font === 'medium') body.style.fontSize = '1rem';
-      else if (font === 'large') body.style.fontSize = '1.125rem';
-      else if (font === 'xlarge') body.style.fontSize = '1.25rem';
+      if (font === 'small') body.classList.add('small-text');
+      else if (font === 'medium') body.classList.add('medium-text');
+      else if (font === 'large') body.classList.add('large-text');
+      else if (font === 'xlarge') body.classList.add('xlarge-text');
 
       const contrastOn = contrastToggle.checked;
       const darkOn = darkModeToggle.checked;
 
       if (darkOn) {
-        body.style.backgroundColor = '#111827'; // dark grey
-        body.style.color = 'black'; // black text for dark mode
+        body.style.backgroundColor = '#111827';
+        body.style.color = 'black';
       } else if (contrastOn) {
-        body.style.backgroundColor = '#fefcbf'; // high contrast yellow
-        body.style.color = 'black'; // black text
+        body.style.backgroundColor = '#fefcbf';
+        body.style.color = 'black';
       } else {
-        body.style.backgroundColor = '#f3f4f6'; // normal light grey
-        body.style.color = '#1f2937'; // dark grey text
+        body.style.backgroundColor = '#f3f4f6';
+        body.style.color = '#1f2937';
       }
     }
 
