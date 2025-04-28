@@ -8,8 +8,8 @@
   <!-- Internal CSS for Settings Page -->
   <style>
     body {
-      background-colour: #f3f4f6; /* light grey */
-      colour: #1f2937; /* dark grey */
+      background-color: #f3f4f6; /* light grey */
+      color: #1f2937; /* dark grey */
       padding: 2rem;
       min-height: 100vh;
       font-family: system-ui, sans-serif;
@@ -17,7 +17,7 @@
     }
 
     a {
-      colour: #2563eb;
+      color: #2563eb;
       text-decoration: none;
       font-size: 1.125rem;
       font-weight: 600;
@@ -39,7 +39,7 @@
     h1 {
       font-size: 2rem;
       font-weight: 700;
-      text-align: centre;
+      text-align: center;
       margin-bottom: 2rem;
     }
 
@@ -60,7 +60,7 @@
     .flex-between {
       display: flex;
       justify-content: space-between;
-      align-items: centre;
+      align-items: center;
       margin-bottom: 1.5rem;
     }
 
@@ -80,28 +80,28 @@
       padding: 0.75rem;
       font-size: 1.125rem;
       font-weight: 700;
-      colour: white;
+      color: white;
       border: none;
       border-radius: 0.5rem;
       margin-top: 1rem;
       cursor: pointer;
-      transition: background-colour 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     .save-button {
-      background-colour: #16a34a; /* green */
+      background-color: #16a34a; /* green */
     }
 
     .save-button:hover {
-      background-colour: #15803d;
+      background-color: #15803d;
     }
 
     .reset-button {
-      background-colour: #dc2626; /* red */
+      background-color: #dc2626; /* red */
     }
 
     .reset-button:hover {
-      background-colour: #b91c1c;
+      background-color: #b91c1c;
     }
   </style>
 </head>
@@ -153,6 +153,7 @@
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.getElementById('settingsBody');
 
+    // Load saved settings
     window.addEventListener('DOMContentLoaded', () => {
       fontSizeSelect.value = localStorage.getItem('fontSize') || 'large';
       contrastToggle.checked = localStorage.getItem('contrast') === 'high';
@@ -160,19 +161,31 @@
       applyPreview();
     });
 
+    // Live preview on change
     fontSizeSelect.addEventListener('change', applyPreview);
     contrastToggle.addEventListener('change', applyPreview);
     darkModeToggle.addEventListener('change', applyPreview);
 
     function applyPreview() {
-      body.style.backgroundColour = darkModeToggle.checked ? '#111827' : (contrastToggle.checked ? '#fefcbf' : '#f3f4f6');
-      body.style.colour = contrastToggle.checked || darkModeToggle.checked ? 'black' : '#1f2937';
-
       const font = fontSizeSelect.value;
       if (font === 'small') body.style.fontSize = '0.875rem';
       else if (font === 'medium') body.style.fontSize = '1rem';
       else if (font === 'large') body.style.fontSize = '1.125rem';
       else if (font === 'xlarge') body.style.fontSize = '1.25rem';
+
+      const contrastOn = contrastToggle.checked;
+      const darkOn = darkModeToggle.checked;
+
+      if (darkOn) {
+        body.style.backgroundColor = '#111827'; // dark grey
+        body.style.color = 'black'; // black text for dark mode
+      } else if (contrastOn) {
+        body.style.backgroundColor = '#fefcbf'; // high contrast yellow
+        body.style.color = 'black'; // black text
+      } else {
+        body.style.backgroundColor = '#f3f4f6'; // normal light grey
+        body.style.color = '#1f2937'; // dark grey text
+      }
     }
 
     function saveSettings() {
