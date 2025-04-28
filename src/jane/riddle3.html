@@ -4,9 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riddle Game - Riddle 3</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+    <div class="top-buttons">
+      <a href="src/turaki/settings.html">
+        <span>⚙️</span> Settings
+      </a>
+      <a href="src/turaki/login.html">
+        <span>👤</span> Account
+      </a>
+    </div>
+
+    <div class="title-section">
+      <h1>Puzzle Games</h1>
+      <div class="fav-search-bar">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
+          <span>⭐</span> Favourites
+        </button>
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Search games..." />
+          <button onclick="handleSearch()">
+            <span>🔍</span> Search
+          </button>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <hr />
+
+    <nav class="navbar-dark">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="src/turaki/luckbased.html">Luck Based</a></li>
+        <li><a href="src/turaki/skillbased.html">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="game-container">
     <h1>Riddle 3</h1>
     <div id="riddle-text">The more of this there is, the less you see. What is it?</div>
@@ -49,10 +85,10 @@
     }
   </script>
 </body>
-</html>
-
+<!--
 //This HTML code creates the third riddle page of the Riddle Game. 
 It shows a riddle, allows the user to submit an answer, and uses JavaScript 
 to check if the answer is "darkness." If the answer is correct, the user receives 
 positive feedback and is shown a “Finish Game” button that takes them to a final 
-thank you page. Incorrect answers prompt a message to try again.
+thank you page. Incorrect answers prompt a message to try again. -->
+</html>
