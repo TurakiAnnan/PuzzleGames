@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Login / Sign-Up</title>
 
+  <!-- Internal styling done as the site is unique so not much reason to be external -->
   <style>
     body {
       background-color: #f3f4f6;
@@ -118,12 +119,11 @@
     }
   </style>
 </head>
-
 <body>
 
   <div class="login-container">
     
-    <!-- LOGIN SECTION -->
+    <!-- login section -->
     <div class="login-section section-border">
       <h2>Log In</h2>
       <p>Log in to start playing</p>
@@ -146,7 +146,7 @@
   </div>
 
   <script>
-    // Login logic
+    // Login logic essentially just checking saved data to check if user has signed up 
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const loginName = document.getElementById('loginName').value;
@@ -159,7 +159,7 @@
       }
     });
 
-    // Sign-Up logic
+    // Sign-Up logic essentailyl making a object (like a 2D array) to store the progress flags and the username
     document.getElementById('signUpForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const signUpName = document.getElementById('signUpName').value;
