@@ -4,9 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>More Information</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+      <header>
+    <div class="top-buttons">
+      <a href="../../src/turaki/settings.html">
+        <span>⚙️</span> Settings
+      </a>
+      <a href="../../src/turaki/login.html">
+        <span>👤</span> Account
+      </a>
+    </div>
+
+    <div class="title-section">
+      <h1>Puzzle Games</h1>
+      <div class="fav-search-bar">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
+          <span>⭐</span> Favourites
+        </button>
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Search games..." />
+          <button onclick="handleSearch()">
+            <span>🔍</span> Search
+          </button>
+        </div>
+      </div>
+    </div>
   <div class="game-container">
     <h1>More Information</h1>
     
@@ -34,10 +58,9 @@
     <a href="index.html" class="button-link">Back to Welcome Page</a> <!-- This links back to index.html -->
   </div>
 </body>
-</html>
-
-//This HTML code creates a "More Information" page for the Riddle Game. 
+<!--//This HTML code creates a "More Information" page for the Riddle Game. 
 It includes sections that explain how to play, the game rules, and what to 
 expect from the riddles. The page uses headings, paragraphs, and a list for 
 clear organization, and it links back to the welcome page. It also connects 
-to an external CSS file for styling.
+to an external CSS file for styling.-->
+</html>
