@@ -5,40 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script> <!-- ONLY for the game grid -->
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Only needed for the game grid -->
 
+  <!-- Load saved accessibility settings -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const font = localStorage.getItem('fontSize');
+      const fontSize = localStorage.getItem('fontSize');
       const contrast = localStorage.getItem('contrast');
-      const dark = localStorage.getItem('darkMode');
+      const darkMode = localStorage.getItem('darkMode');
 
       const body = document.getElementById('pageBody');
       body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl', 'light-mode', 'dark-mode', 'high-contrast-mode');
 
-      if (font === 'small') body.classList.add('text-sm');
-      else if (font === 'medium') body.classList.add('text-base');
-      else if (font === 'large') body.classList.add('text-lg');
-      else if (font === 'xlarge') body.classList.add('text-xl');
+      if (fontSize === 'small') body.classList.add('text-sm');
+      else if (fontSize === 'medium') body.classList.add('text-base');
+      else if (fontSize === 'large') body.classList.add('text-lg');
+      else if (fontSize === 'xlarge') body.classList.add('text-xl');
 
-      const nav = document.querySelector('nav');
-      nav.classList.remove('navbar-dark', 'navbar-high-contrast');
+      const navigation = document.querySelector('nav');
+      navigation.classList.remove('navbar-dark', 'navbar-high-contrast');
 
       if (contrast === 'high') {
         body.classList.add('high-contrast-mode');
 
         const buttons = document.querySelectorAll('button, a');
-        buttons.forEach(btn => {
-          btn.classList.add('button-border-black');
+        buttons.forEach(button => {
+          button.classList.add('button-border-black');
         });
 
-        if (nav) nav.classList.add('navbar-high-contrast');
-      } else if (dark === 'on') {
+        if (navigation) navigation.classList.add('navbar-high-contrast');
+      } else if (darkMode === 'on') {
         body.classList.add('dark-mode');
-        if (nav) nav.classList.add('navbar-dark');
+        if (navigation) navigation.classList.add('navbar-dark');
       } else {
         body.classList.add('light-mode');
-        if (nav) nav.classList.add('navbar-dark');
+        if (navigation) navigation.classList.add('navbar-dark');
       }
     });
   </script>
@@ -79,21 +80,22 @@
     <nav class="navbar-dark">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="src/turaki/luckbased.html">Luck Based</a></li>
+        <li><a href="src/turaki/luckbased.html">Luck-Based</a></li>
         <li><a href="src/turaki/skillbased.html">Problem Solving</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main -->
+  <!-- Main Content -->
   <main>
-    <div class="mb-8 text-center">
+    <div class="mb-8 text-centre">
       <h2>Click to play a game!</h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+    <!-- Game Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-centre">
       <div data-game-box="Rock, Paper, Scissors">
-        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+        <div class="text-inherit font-semibold mb-2 flex justify-centre items-centre gap-2">
           Hangman
           <span class="cursor-pointer select-none" data-game="Rock, Paper, Scissors">☆</span>
         </div>
@@ -103,7 +105,7 @@
       </div>
 
       <div data-game-box="Riddles">
-        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+        <div class="text-inherit font-semibold mb-2 flex justify-centre items-centre gap-2">
           Riddles
           <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
         </div>
@@ -113,7 +115,7 @@
       </div>
 
       <div data-game-box="Anagram">
-        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+        <div class="text-inherit font-semibold mb-2 flex justify-centre items-centre gap-2">
           Anagram
           <span class="cursor-pointer select-none" data-game="Anagram">☆</span>
         </div>
@@ -124,7 +126,7 @@
     </div>
   </main>
 
-  <!-- JavaScript for handling users, favorites, search -->
+  <!-- JavaScript for handling users, favourites, and search -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const user = localStorage.getItem('username');
@@ -152,14 +154,14 @@
         }
       }
 
-      function toggleFavourite(game, el) {
-        const i = favourites.indexOf(game);
-        if (i === -1) {
+      function toggleFavourite(game, element) {
+        const index = favourites.indexOf(game);
+        if (index === -1) {
           favourites.push(game);
-          el.textContent = '⭐';
+          element.textContent = '⭐';
         } else {
-          favourites.splice(i, 1);
-          el.textContent = '☆';
+          favourites.splice(index, 1);
+          element.textContent = '☆';
         }
         playPopSound();
         saveFavourites();
@@ -181,10 +183,8 @@
         showingFavouritesOnly = !showingFavouritesOnly;
         if (showingFavouritesOnly) {
           filterToFavourites();
-          document.getElementById("favouriteToggle").classList.add("bg-yellow-200");
         } else {
           showAllGames();
-          document.getElementById("favouriteToggle").classList.remove("bg-yellow-200");
         }
       }
 
