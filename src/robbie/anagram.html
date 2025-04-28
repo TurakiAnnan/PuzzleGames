@@ -4,84 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script> <!-- Only needed for the game grid -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Load saved accessibility settings -->
+  <!-- Apply settings on load -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const fontSize = localStorage.getItem('fontSize');
+      const font = localStorage.getItem('fontSize');
       const contrast = localStorage.getItem('contrast');
-      const darkMode = localStorage.getItem('darkMode');
+      const dark = localStorage.getItem('darkMode');
 
       const body = document.getElementById('pageBody');
-      body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl', 'light-mode', 'dark-mode', 'high-contrast-mode');
+      body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl');
 
-      if (fontSize === 'small') body.classList.add('text-sm');
-      else if (fontSize === 'medium') body.classList.add('text-base');
-      else if (fontSize === 'large') body.classList.add('text-lg');
-      else if (fontSize === 'xlarge') body.classList.add('text-xl');
-
-      const navigation = document.querySelector('nav');
-      navigation.classList.remove('navbar-dark', 'navbar-high-contrast');
+      if (font === 'small') body.classList.add('text-sm');
+      else if (font === 'medium') body.classList.add('text-base');
+      else if (font === 'large') body.classList.add('text-lg');
+      else if (font === 'xlarge') body.classList.add('text-xl');
 
       if (contrast === 'high') {
-        body.classList.add('high-contrast-mode');
+        body.classList.remove('bg-white', 'bg-gray-100');
+        body.classList.add('bg-yellow-50', 'text-black');
 
         const buttons = document.querySelectorAll('button, a');
-        buttons.forEach(button => {
-          button.classList.add('button-border-black');
+        buttons.forEach(btn => {
+          btn.classList.add('border', 'border-black');
         });
 
-        if (navigation) navigation.classList.add('navbar-high-contrast');
-      } else if (darkMode === 'on') {
-        body.classList.add('dark-mode');
-        if (navigation) navigation.classList.add('navbar-dark');
-      } else {
-        body.classList.add('light-mode');
-        if (navigation) navigation.classList.add('navbar-dark');
+        const nav = document.querySelector('nav');
+        if (nav) nav.classList.replace('bg-black', 'bg-yellow-600');
+      }
+
+      if (dark === 'on') {
+        body.classList.remove('bg-white', 'text-black', 'text-gray-900');
+        body.classList.add('bg-gray-900', 'text-white');
       }
     });
   </script>
+
+  
 </head>
 
-<body id="pageBody" class="light-mode">
-  <audio id="popSound" src="assets/popEffect.mp3" preload="auto"></audio>
+<body id="pageBody" class="bg-white text-gray-900 text-base">
 
-  <!-- Header -->
-  <header>
-    <div class="top-buttons">
-      <a href="src/turaki/settings.html">
-        <span>⚙️</span> Settings
+  <!-- Settings + Login -->
+  <header class="bg-blue-100 border-b border-black relative">
+    <div class="absolute top-4 right-4 flex space-x-4">
+     <a href="../turaki/settings.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
+        <span class="inline-block w-5 h-5 mr-2">⚙️</span> Settings
       </a>
-      <a href="src/turaki/login.html">
-        <span>👤</span> Account
+      <a href="../turaki/login.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
+        <span class="inline-block w-5 h-5 mr-2">👤</span>Login
       </a>
     </div>
 
-    <div class="title-section">
-      <h1>Puzzle Games</h1>
-      <div class="fav-search-bar">
-        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
-          <span>⭐</span> Favourites
+    <!-- Title + Favourites + Search -->
+    <div class="grid grid-cols-3 items-center px-12 py-6">
+      <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
+      <div class="flex justify-center gap-x-10 items-center">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center mr-4">
+          <span class="inline-block w-5 h-5 mr-2">⭐</span>Favourites
         </button>
-        <div class="search-bar">
-          <input id="searchInput" type="text" placeholder="Search games..." />
-          <button onclick="handleSearch()">
-            <span>🔍</span> Search
+        <div class="flex rounded bg-gray-200 overflow-hidden">
+          <input id="searchInput" type="text" placeholder="Search games..." class="px-3 py-2 text-sm bg-gray-200 outline-none">
+          <button onclick="handleSearch()" class="px-4 py-2 text-black font-semibold text-lg hover:bg-gray-300 flex items-center">
+            <span class="inline-block w-5 h-5 mr-2">🔍</span>Search
           </button>
         </div>
       </div>
       <div></div>
     </div>
 
-    <hr />
-
-    <nav class="navbar-dark">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="src/turaki/luckbased.html">Luck-Based</a></li>
-        <li><a href="src/turaki/skillbased.html">Problem Solving</a></li>
+    <!-- Navigation -->
+    <hr class="border-t border-black" />
+    <nav class="bg-black text-white">
+      <ul class="flex space-x-6 px-6 py-2 text-lg justify-center">
+        <li><a href="../../index.html" class="hover:underline">Home</a></li>
+        <li><a href="#" class="hover:underline">Luck Based</a></li>
+        <li><a href="#" class="hover:underline">Problem Solving</a></li>
       </ul>
     </nav>
   </header>
