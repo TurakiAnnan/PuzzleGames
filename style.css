@@ -1,0 +1,206 @@
+/* ==== Base Reset ==== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: white;
+  color: #1a202c; /* Tailwind's gray-900 */
+  font-family: system-ui, sans-serif;
+  font-size: 1rem; /* medium size */
+}
+
+/* Dark Mode / Light Mode / High Contrast Mode */
+.light-mode {
+  background-color: white;
+  color: #1a202c;
+}
+
+.dark-mode {
+  background-color: #111827; /* gray-900 */
+  color: white;
+}
+
+.high-contrast-mode {
+  background-color: #fefcbf; /* yellow-50 */
+  color: black;
+}
+
+/* Nav Colors */
+.navbar-dark {
+  background-color: black;
+}
+
+.navbar-high-contrast {
+  background-color: #d97706; /* yellow-600 */
+}
+
+/* Basic Link & Button Styling */
+a, button {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.button-border-black {
+  border: 2px solid black;
+}
+
+/* Header Section */
+header {
+  background-color: #ebf8ff; /* blue-100 */
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+/* Top Right Buttons (Settings + Account) */
+.top-buttons {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.top-buttons a {
+  background-color: #e5e7eb; /* gray-200 */
+  color: black;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.top-buttons a:hover {
+  background-color: #d1d5db; /* gray-300 */
+}
+
+/* Header Middle Title + Favourites/Search Bar */
+.title-section {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.title-section h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.fav-search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Favourites Button */
+#favouriteToggle {
+  background-color: #e5e7eb;
+  color: black;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+}
+
+#favouriteToggle:hover {
+  background-color: #d1d5db;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  background-color: #e5e7eb;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+#searchInput {
+  padding: 0.5rem;
+  border: none;
+  background-color: #e5e7eb;
+  outline: none;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  background-color: #e5e7eb;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.search-bar button:hover {
+  background-color: #d1d5db;
+}
+
+/* Nav Links */
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 1.125rem;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Divider */
+hr {
+  border: none;
+  border-top: 2px solid black;
+}
+
+/* Main Section */
+main {
+  padding: 1.5rem;
+}
+
+main h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Game Cards */
+[data-game-box] {
+  background-color: white;
+}
+
+[data-game-box] a {
+  border: 2px solid #d1d5db;
+  border-radius: 0.5rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: background-color 0.2s;
+}
+
+[data-game-box] a:hover {
+  background-color: #f3f4f6;
+}
+
+[data-game-box] img {
+  max-height: 8rem;
+  max-width: 8rem;
+  object-fit: contain;
+}
