@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- feature that allow for it to be put on mobile devices -->
   <title>Puzzle Games</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script> <!-- Only needed for the game grid -->
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Only needed for the game grid for simplicity in displaying games-->
 
-  <!-- Load saved accessibility settings -->
+  <!-- Load saved accessibility settings (Should be external in the future) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const fontSize = localStorage.getItem('fontSize');
@@ -48,7 +48,7 @@
 <body id="pageBody" class="light-mode">
   <audio id="popSound" src="assets/popEffect.mp3" preload="auto"></audio>
 
-  <!-- Header -->
+  <!-- Header uses CSS file "style.css" for styling-->
   <header>
     <div class="top-buttons">
       <a href="src/turaki/settings.html">
@@ -76,7 +76,7 @@
     </div>
 
     <hr />
-
+<!--Navigation bar-->
     <nav class="navbar-dark">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -92,7 +92,7 @@
       <h2>Click to play a game!</h2>
     </div>
 
-    <!-- Game Grid -->
+    <!-- Game Grid using tailwind-->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-centre">
       <div data-game-box="Rock, Paper, Scissors">
         <div class="text-inherit font-semibold mb-2 flex justify-centre items-centre gap-2">
@@ -126,17 +126,17 @@
     </div>
   </main>
 
-  <!-- JavaScript for handling users, favourites, and search -->
+  <!-- JavaScript for handling users, favourites, and search should be done externall in the future-->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const user = localStorage.getItem('username');
       if (!user) {
         window.location.href = 'src/turaki/login.html';
       } else {
-        document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
+        document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`; //Uses the users loging to display their name
       }
 
-      let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]');
+      let favourites = JSON.parse(localStorage.getItem(`${user}_favourites`) || '[]'); //using the users saved data for making up favourites 
       let showingFavouritesOnly = false;
 
       const stars = document.querySelectorAll('[data-game]');
@@ -153,8 +153,8 @@
           popSound.play();
         }
       }
-
-      function toggleFavourite(game, element) {
+      // Allowing for the visual tranformation of the star
+      function toggleFavourite(game, element) { 
         const index = favourites.indexOf(game);
         if (index === -1) {
           favourites.push(game);
