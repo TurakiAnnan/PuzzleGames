@@ -6,39 +6,25 @@
   <title>Settings</title>
 
   <style>
-    /* General Settings Style */
     body {
-      background-color: #f3f4f6; /* light grey */
-      color: #1f2937; /* dark grey */
+      background-color: #f3f4f6;
+      color: #1f2937;
       padding: 2rem;
       min-height: 100vh;
       font-family: system-ui, sans-serif;
-      transition: all 0.3s ease;
       font-size: 1rem; /* Default medium */
+      transition: all 0.3s ease;
     }
 
-    /* Font size options */
-    .small-text {
-      font-size: 0.875rem;
+    a, h1, label, select, button, input, p {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
     }
 
-    .medium-text {
-      font-size: 1rem;
-    }
-
-    .large-text {
-      font-size: 1.125rem;
-    }
-
-    .xlarge-text {
-      font-size: 1.25rem;
-    }
-
-    /* Other styles the same */
     a {
       color: #2563eb;
       text-decoration: none;
-      font-size: 1.125rem;
       font-weight: 600;
     }
 
@@ -56,20 +42,18 @@
     }
 
     h1 {
-      font-size: 2rem;
       font-weight: 700;
       text-align: center;
       margin-bottom: 2rem;
     }
 
     label {
-      font-size: 1.125rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      display: block;
     }
 
     select, input[type="checkbox"] {
-      font-size: 1rem;
       padding: 0.5rem;
       margin-bottom: 1.5rem;
       border: 1px solid #d1d5db;
@@ -93,7 +77,6 @@
       display: block;
       width: 100%;
       padding: 0.75rem;
-      font-size: 1.125rem;
       font-weight: 700;
       color: white;
       border: none;
@@ -104,7 +87,7 @@
     }
 
     .save-button {
-      background-color: #16a34a; /* green */
+      background-color: #16a34a;
     }
 
     .save-button:hover {
@@ -112,7 +95,7 @@
     }
 
     .reset-button {
-      background-color: #dc2626; /* red */
+      background-color: #dc2626;
     }
 
     .reset-button:hover {
@@ -172,14 +155,12 @@
     darkModeToggle.addEventListener('change', applyPreview);
 
     function applyPreview() {
-      // Clear font size classes
-      body.classList.remove('small-text', 'medium-text', 'large-text', 'xlarge-text');
-
       const font = fontSizeSelect.value;
-      if (font === 'small') body.classList.add('small-text');
-      else if (font === 'medium') body.classList.add('medium-text');
-      else if (font === 'large') body.classList.add('large-text');
-      else if (font === 'xlarge') body.classList.add('xlarge-text');
+
+      if (font === 'small') body.style.fontSize = '0.875rem';
+      else if (font === 'medium') body.style.fontSize = '1rem';
+      else if (font === 'large') body.style.fontSize = '1.125rem';
+      else if (font === 'xlarge') body.style.fontSize = '1.25rem';
 
       const contrastOn = contrastToggle.checked;
       const darkOn = darkModeToggle.checked;
