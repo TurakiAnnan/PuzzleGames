@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings</title>
 
+  <!--Internal Styling because page is unique-->
   <style>
     body {
       background-color: #f3f4f6;
@@ -12,7 +13,7 @@
       padding: 2rem;
       min-height: 100vh;
       font-family: system-ui, sans-serif;
-      font-size: 1rem; /* Default medium */
+      font-size: 1rem; 
       transition: all 0.3s ease;
     }
 
@@ -137,6 +138,9 @@
     <button onclick="resetSettings()" class="button reset-button">Reset All Settings</button>
   </div>
 
+  <!-- Essentially the users setting are being saved locally to allow for it to be stored under their account
+  the script will then tweak the users page by using the earlier script to do it with the respective setting. 
+  The earlier script is then needed for everypage to be able to apply the setting live-->
   <script>
     const fontSizeSelect = document.getElementById('fontSize');
     const contrastToggle = document.getElementById('contrastToggle');
