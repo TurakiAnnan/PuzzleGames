@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Games</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Only for the grid -->
 
-  <!-- Loads saved acccesibility settings -->
+  <!-- Loads saved accessibility settings -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const font = localStorage.getItem('fontSize');
@@ -14,107 +15,111 @@
       const dark = localStorage.getItem('darkMode');
 
       const body = document.getElementById('pageBody');
-      body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl');
+      body.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl', 'light-mode', 'dark-mode', 'high-contrast-mode');
 
       if (font === 'small') body.classList.add('text-sm');
       else if (font === 'medium') body.classList.add('text-base');
       else if (font === 'large') body.classList.add('text-lg');
       else if (font === 'xlarge') body.classList.add('text-xl');
 
+      const nav = document.querySelector('nav');
+      nav.classList.remove('navbar-dark', 'navbar-high-contrast');
+
       if (contrast === 'high') {
-        body.classList.remove('bg-white', 'bg-gray-100');
-        body.classList.add('bg-yellow-50', 'text-black');
+        body.classList.add('high-contrast-mode');
 
         const buttons = document.querySelectorAll('button, a');
         buttons.forEach(btn => {
-          btn.classList.add('border', 'border-black');
+          btn.classList.add('button-border-black');
         });
 
-        const nav = document.querySelector('nav');
-        if (nav) nav.classList.replace('bg-black', 'bg-yellow-600');
-      }
-
-      if (dark === 'on') {
-        body.classList.remove('bg-white', 'text-black', 'text-gray-900');
-        body.classList.add('bg-gray-900', 'text-white');
+        if (nav) nav.classList.add('navbar-high-contrast');
+      } else if (dark === 'on') {
+        body.classList.add('dark-mode');
+        if (nav) nav.classList.add('navbar-dark');
+      } else {
+        body.classList.add('light-mode');
+        if (nav) nav.classList.add('navbar-dark');
       }
     });
   </script>
 </head>
 
-<!-- Loading audio from assest and page id is use for accesibility -->
-<body id="pageBody" class="bg-white text-gray-900 text-base">
+<body id="pageBody" class="light-mode">
   <audio id="popSound" src="../../assets/popEffect.mp3" preload="auto"></audio>
 
-  <!--Header buttons configuration settings, account, favourits and search -->
-  <header class="bg-blue-100 border-b border-black relative">
-    <div class="absolute top-4 right-4 flex space-x-4">
-      <a href="settings.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
-        <span class="inline-block w-5 h-5 mr-2">⚙️</span> Settings
+  <!-- Header -->
+  <header>
+    <div class="top-buttons">
+      <a href="settings.html">
+        <span>⚙️</span> Settings
       </a>
-      <a href="login.html" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center">
-        <span class="inline-block w-5 h-5 mr-2">👤</span> Account
+      <a href="login.html">
+        <span>👤</span> Account
       </a>
     </div>
 
-    <div class="grid grid-cols-3 items-center px-12 py-6">
-      <h1 class="text-4xl font-extrabold">Puzzle Games</h1>
-      <div class="flex justify-center gap-x-10 items-center">
-        <button onclick="handleFavouritesToggle()" id="favouriteToggle" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold text-lg py-2 px-4 rounded flex items-center mr-4">
-          <span class="inline-block w-5 h-5 mr-2">⭐</span> Favourites
+    <div class="title-section">
+      <h1>Puzzle Games</h1>
+      <div class="fav-search-bar">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
+          <span>⭐</span> Favourites
         </button>
-        <div class="flex rounded bg-gray-200 overflow-hidden">
-          <input id="searchInput" type="text" placeholder="Search games..." class="px-3 py-2 text-sm bg-gray-200 outline-none">
-          <button onclick="handleSearch()" class="px-4 py-2 text-black font-semibold text-lg hover:bg-gray-300 flex items-center">
-            <span class="inline-block w-5 h-5 mr-2">🔍</span> Search
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Search games..." />
+          <button onclick="handleSearch()">
+            <span>🔍</span> Search
           </button>
         </div>
       </div>
       <div></div>
     </div>
 
-    <!-- Navigation Bar buttons-->
-    <hr class="border-t border-black" />
-    <nav class="bg-black text-white">
-      <ul class="flex space-x-6 px-6 py-2 text-lg justify-center">
-        <li><a href="../../index.html" class="hover:underline">Home</a></li>
-        <li><a href="luckbased.html" class="hover:underline">Luck Based</a></li>
-        <li><a href="skillbased.html" class="hover:underline">Problem Solving</a></li>
+    <hr />
+
+    <nav class="navbar-dark">
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="luckbased.html">Luck Based</a></li>
+        <li><a href="skillbased.html">Problem Solving</a></li>
       </ul>
     </nav>
   </header>
-  <!-- Game Boxes coniguration put on a grid using tailwind-->
-  <main class="p-6">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-  <div data-game-box="Riddles">
-    <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
-      Riddles
-      <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
+
+  <main>
+    <div class="mb-8 text-center">
+      <h2>Click to play a game!</h2>
     </div>
-    <a href="../jane/index.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition flex justify-center items-center overflow-hidden">
-      <img src="../jane/riddler.png" alt="Riddles Game Preview" class="max-h-32 max-w-32 object-contain">
-    </a>
-  </div>
 
-  <div data-game-box="Anagram">
-    <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
-      Anagram
-      <span class="cursor-pointer select-none" data-game="Anagram">☆</span>
+    <!-- Game Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div data-game-box="Riddles">
+        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+          Riddles
+          <span class="cursor-pointer select-none" data-game="Riddles">☆</span>
+        </div>
+        <a href="../jane/index.html">
+          <img src="../jane/riddler.png" alt="Riddles Game Preview" />
+        </a>
+      </div>
+
+      <div data-game-box="Anagram">
+        <div class="text-inherit font-semibold mb-2 flex justify-center items-center gap-2">
+          Anagram
+          <span class="cursor-pointer select-none" data-game="Anagram">☆</span>
+        </div>
+        <a href="../robbie/anagram.html">
+          <img src="../../assets/anagram.png" alt="Anagram Game Preview" />
+        </a>
+      </div>
     </div>
-    <a href="../robbie/anagram.html" class="block border-2 border-gray-300 rounded-lg h-40 hover:bg-gray-100 transition flex justify-center items-center overflow-hidden">
-      <img src="../../assets/anagram.png" alt="Anagram Game Preview" class="max-h-32 max-w-32 object-contain">
-    </a>
-  </div>
-</div>
-
-
   </main>
- <script>
-    // To make the custom click to play with users name
+
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
       const user = localStorage.getItem('username');
       if (!user) {
-        window.location.href = 'src/turaki/login.html';
+        window.location.href = '../../src/turaki/login.html';
       } else {
         document.querySelector("h2").innerText = `Welcome, ${user}! Click to play a game!`;
       }
@@ -166,10 +171,8 @@
         showingFavouritesOnly = !showingFavouritesOnly;
         if (showingFavouritesOnly) {
           filterToFavourites();
-          document.getElementById("favouriteToggle").classList.add("bg-yellow-200");
         } else {
           showAllGames();
-          document.getElementById("favouriteToggle").classList.remove("bg-yellow-200");
         }
       }
 
