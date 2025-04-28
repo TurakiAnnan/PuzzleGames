@@ -4,9 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+    <div class="top-buttons">
+      <a href="src/turaki/settings.html">
+        <span>⚙️</span> Settings
+      </a>
+      <a href="src/turaki/login.html">
+        <span>👤</span> Account
+      </a>
+    </div>
+
+    <div class="title-section">
+      <h1>Puzzle Games</h1>
+      <div class="fav-search-bar">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
+          <span>⭐</span> Favourites
+        </button>
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Search games..." />
+          <button onclick="handleSearch()">
+            <span>🔍</span> Search
+          </button>
+        </div>
+      </div>
+      <div></div>
+    </div>
+
+    <hr />
+
+    <nav class="navbar-dark">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="src/turaki/luckbased.html">Luck Based</a></li>
+        <li><a href="src/turaki/skillbased.html">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="game-container">
     <h1>Thank You for Playing!</h1>
     <p>Congratulations! You've completed the riddle game.</p>
@@ -20,9 +56,8 @@
     <button onclick="window.location.href='mailto:40690793@live.napier.ac.uk?subject=Contact%20Us&body=Hello,%20I%20have%20a%20question%20about%20the%20riddle%20game.'">Contact Us</button>
   </div>
 </body>
-</html>
-
-//This HTML code creates the "Thank You" page for the Riddle Game. 
+<!--//This HTML code creates the "Thank You" page for the Riddle Game. 
 After completing the game, users see a congratulatory message, a Riddler-themed image, 
 and two buttons: one to play the game again and another to contact the game creator via email. 
-It uses a local image file and links to an email address for user inquiries.
+It uses a local image file and links to an email address for user inquiries.-->
+</html>
