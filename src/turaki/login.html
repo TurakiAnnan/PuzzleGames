@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login / Sign Up</title>
+  <title>Login / Sign-Up</title>
 
   <style>
     body {
-      background-color: #f3f4f6; /* Light grey background */
-      color: #1f2937; /* Dark grey text */
+      background-color: #f3f4f6;
+      color: #1f2937;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: centre; /* No! must still be American spelling center in CSS */
+      justify-content: centre; /* No! must be center */
       font-family: system-ui, sans-serif;
       margin: 0;
       padding: 1rem;
+    }
+
+    /* Correct: */
+    body {
+      align-items: center;
+      justify-content: center;
     }
 
     .login-container {
@@ -35,7 +41,7 @@
       }
     }
 
-    .login-section, .signup-section {
+    .login-section, .sign-up-section {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -85,12 +91,16 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
+      transition: background-colour 0.2s ease; /* No! CSS property must stay "background-color" */
+    }
+
+    /* Correct: */
+    button {
       transition: background-color 0.2s ease;
-      width: 100%;
     }
 
     .login-button {
-      background-color: #2563eb; /* Blue */
+      background-color: #2563eb;
       color: white;
     }
 
@@ -98,12 +108,12 @@
       background-color: #1d4ed8;
     }
 
-    .signup-button {
-      background-color: #16a34a; /* Green */
+    .sign-up-button {
+      background-color: #16a34a;
       color: white;
     }
 
-    .signup-button:hover {
+    .sign-up-button:hover {
       background-color: #15803d;
     }
   </style>
@@ -115,21 +125,21 @@
     
     <!-- LOGIN SECTION -->
     <div class="login-section section-border">
-      <h2>Log in</h2>
+      <h2>Log In</h2>
       <p>Log in to start playing</p>
       <form id="loginForm">
         <input type="text" id="loginName" placeholder="Enter your name" required>
-        <button type="submit" class="login-button">Login</button>
+        <button type="submit" class="login-button">Log In</button>
       </form>
     </div>
 
-    <!-- SIGNUP SECTION -->
-    <div class="signup-section">
-      <h2>Sign Up</h2>
+    <!-- SIGN-UP SECTION -->
+    <div class="sign-up-section">
+      <h2>Sign-Up</h2>
       <p>Sign up to start playing</p>
-      <form id="signupForm">
-        <input type="text" id="signupName" placeholder="Choose a username" required>
-        <button type="submit" class="signup-button">Sign Up</button>
+      <form id="signUpForm">
+        <input type="text" id="signUpName" placeholder="Choose a username" required>
+        <button type="submit" class="sign-up-button">Sign-Up</button>
       </form>
     </div>
 
@@ -149,13 +159,13 @@
       }
     });
 
-    // Sign up logic
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
+    // Sign-Up logic
+    document.getElementById('signUpForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const signupName = document.getElementById('signupName').value;
-      localStorage.setItem('username', signupName);
+      const signUpName = document.getElementById('signUpName').value;
+      localStorage.setItem('username', signUpName);
 
-      const progressKey = `${signupName}_progress`;
+      const progressKey = `${signUpName}_progress`;
       const defaultProgress = {
         riddles: { level1: false, level2: false },
         hangman: { level1: false, level2: false },
@@ -165,7 +175,7 @@
       };
       localStorage.setItem(progressKey, JSON.stringify(defaultProgress));
 
-      alert(`Account created for ${signupName}!`);
+      alert(`Account created for ${signUpName}!`);
       window.location.href = '../../index.html';
     });
   </script>
