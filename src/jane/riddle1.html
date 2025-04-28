@@ -4,9 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riddle Game - Riddle 1</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+  <header>
+    <div class="top-buttons">
+      <a href="../../src/turaki/settings.html">
+        <span>⚙️</span> Settings
+      </a>
+      <a href="../../src/turaki/login.html">
+        <span>👤</span> Account
+      </a>
+    </div>
+
+    <div class="title-section">
+      <h1>Puzzle Games</h1>
+      <div class="fav-search-bar">
+        <button onclick="handleFavouritesToggle()" id="favouriteToggle">
+          <span>⭐</span> Favourites
+        </button>
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Search games..." />
+          <button onclick="handleSearch()">
+            <span>🔍</span> Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <nav class="navbar-dark">
+      <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../src/turaki/luckbased.html">Luck Based</a></li>
+        <li><a href="../../src/turaki/skillbased.html">Problem Solving</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="game-container">
     <h1>Riddle 1</h1>
     <div id="riddle-text">What has keys but can't open locks?</div>
